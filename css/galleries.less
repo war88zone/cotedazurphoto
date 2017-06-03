@@ -1,0 +1,124 @@
+@media screen and (max-width: 1141px) {
+	.content_galleries {
+		justify-content: center;
+	}
+}
+
+.galleryContainer {
+	width: 200px;
+	height: 200px;
+	padding: 30px;
+	transition: all 0.3s ease-in-out;
+	position: relative;
+	margin: 20px;
+}
+
+.galleryContent {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 5;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.gallery-title {
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	font-size: 20px;
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+}
+
+.galleryContainer:hover {
+	cursor: pointer;
+	.gallery-image {
+		filter: blur(1px) grayscale(10%) brightness(90%);
+	}
+	.gallery-title {
+		opacity: 1;
+	}
+	.horizontal {
+		width: 100%;
+		left: 0%;
+		opacity: 1;
+	}
+	.vertical {
+		height: 100%;
+		top: 0%;
+		opacity: 1;
+	}
+}
+
+.horizontal {
+	opacity: 0;
+	width: 0%;
+	position: absolute;
+	transition: all 0.3s ease-in-out;
+}
+
+.vertical {
+	opacity: 0;
+	height: 0%;
+	position: absolute;
+	transition: all 0.3s ease-in-out;
+}
+
+.straight-top {
+	top: 0;
+	left: 50%;
+	border-top: 1px solid white;
+}
+
+.straight-bottom {
+	bottom: 0;
+	left: 50%;
+	border-bottom: 1px solid white;
+}
+
+.straight-left {
+	left: 0;
+	top: 50%;
+	border-left: 1px solid white;
+}
+
+.straight-right {
+	right: 0;
+	top: 50%;
+	border-left: 1px solid white;
+}
+
+.gallery-image {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.gallery-image-weddingLoveStory {
+	background: url("https://images.unsplash.com/photo-1458841530207-ed6fca2b8c6e?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=") center center;
+	background-size: cover;
+}
+
+.gallery-image-family {
+	background: url("https://blog.smartthings.com/wp-content/uploads/2014/06/o-FAMILY-VACATION-facebook.jpg") center center;
+	background-size: cover;
+}
+
+.gallery-image-littleRiviera {
+	background: url("https://1dib1q3k1s3e11a5av3bhlnb-wpengine.netdna-ssl.com/wp-content/uploads/2012/07/Italian-Riviera.jpg") center center;
+	background-size: cover;
+}
+
+.gallery-image-artProject {
+	background: url("http://www.osce.org/files/imagecache/10_large_gallery/images/hires/f/7/224506.jpg?1456494085") center center;
+	background-size: cover;
+}
+
+.gallery-image-blackAndWhite {
+	background: url("http://static.boredpanda.com/blog/wp-content/uploads/2014/08/cat-looking-at-you-black-and-white-photography-1.jpg") center center;
+	background-size: cover;
+}

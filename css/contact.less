@@ -1,0 +1,110 @@
+.contactContainer {
+  padding-left: 40px;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.mailContainer {
+  height: auto;
+  width: 100%;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.input_name, .input_email {
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+}
+
+.input_email {
+  margin-top: 20px;
+}
+
+.textarea_message {
+  margin-top: 20px;
+  width: 100%;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.buttonSend {
+  width: 150px;
+  height: 30px;
+  background-color: rgba(112,177,255, 0.8);
+  border-radius: 5px;
+  line-height: 30px;
+  text-align: center;
+  box-shadow: 0 2px #336eb6;
+  user-select: none;
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+}
+
+.buttonSend--disabled, .buttonSend--disabled.buttonSend:hover, .buttonSend--disabled.buttonSend:hover {
+  background-color: rgba(199,199,199, 0.8);
+  box-shadow: 0 2px #a7a7a7;
+  transform: translateY(0px);
+}
+
+.buttonSend:hover {
+  cursor: pointer;
+  background-color: rgba(79,129,190, 0.8);
+  box-shadow: 0 2px #34547a;
+}
+
+.buttonSend:active {
+  background-color: rgba(31,69,116, 0.8);
+  transform: translateY(2px);
+  box-shadow: 0 1px #34547a;
+}
+
+.buttonSendContainer {
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+
+.contact {
+  margin-bottom: 10px;
+}
+
+.contact:hover {
+  .contact_text {
+    color: #70b1ff;
+  }
+}
+
+.contact_icon {
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.contactsContainer {
+  margin-top: 20px;  
+}
+
+.contact_text {
+  display: inline-block;
+  font-size: 1.2em;
+  font-family: 'Oswald', sans-serif;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+
+.error {
+  display: none;
+  color: red;
+}
+
+.success {
+  display: none;
+  color: #52cf5c;
+}

@@ -24,8 +24,13 @@ $("#js_aboutMe").load("view/aboutMe.html", function() {
   deferred_aboutMe.resolve();
 });
 
+var deferred_gallery_weddingAndLoveStory = $.Deferred();
+$("#js_gallery_weddingAndLoveStory").load("view/gallery_weddingAndLoveStory.html", function() {
+  deferred_gallery_weddingAndLoveStory.resolve();
+});
+
 // Events
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe).done(function() {
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_gallery_weddingAndLoveStory).done(function() {
   $(".openCloseButton").click(function(){
     $(".title").fadeOut("slow", function(){
       $(".globalContent").fadeIn("slow");
@@ -52,6 +57,17 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
     $(this).find(".icon").addClass("icon--active");
     $(".content").removeClass("content--active");
     $("#content_"+this.id).addClass("content--active");
+  });
+
+  $(".galleriesContainer").click(function(){
+    $(".content").removeClass("content--active");
+    $("#content_"+this.id).addClass("content--active");
+  });
+
+  $("#js_backToGalleries").click(function(){
+    $(this).parent().removeClass("content--active");
+    $("#content_galleries").addClass("content--active");
+
   });
 
   $(".contact").hover(      
@@ -109,6 +125,10 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
       }
     }
   });
+
+  $(".galleryImage").click(function(){
+    $(this).toggleClass("galleryImage--large");
+  })
 
   $(window).resize(function(){
     calc();

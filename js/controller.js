@@ -26,11 +26,51 @@ $("#js_aboutMe").load("view/aboutMe.html", function() {
 
 var deferred_gallery_weddingAndLoveStory = $.Deferred();
 $("#js_gallery_weddingAndLoveStory").load("view/gallery_weddingAndLoveStory.html", function() {
-  deferred_gallery_weddingAndLoveStory.resolve();
+  loadImages("weddingAndLoveStory", deferred_gallery_weddingAndLoveStory);
 });
+
+function loadImages(path, deferred){
+  console.log("loading "+path+"...");
+  var folder = "../image/"+path;
+  var i = 0;
+
+  $.ajax({
+    url : folder,
+    success: function(data) {
+      $(data).find("a").attr("href", function (i, val) {
+          if(val.match(/\.(jpe?g|png|gif)$/)) { 
+            //$("#content_gallery_"+path).append('<div class="galleryImageContainer" id="galleryImageContainer__'+i+'"><img src="'+val+'" class="galleryImage"/></div>');
+            $("#content_gallery_"+path).append('<img alt="coucou" src="'+val+'" class="galleryImage"/>');
+            /*var currentGalleryImage = $("#galleryImageContainer__"+i).find(".galleryImage");
+            if(currentGalleryImage[0] && currentGalleryImage[0].naturalWidth < currentGalleryImage[0].naturalHeight){
+              $("#galleryImageContainer__"+i).addClass("galleryImageContainer--portrait");
+            }
+            else{
+              $("#galleryImageContainer__"+i).addClass("galleryImageContainer--landscape"); 
+            }*/
+          } 
+      });
+      console.log(path+" loaded");
+      deferred.resolve();
+    },
+    error: function(data) {
+      console.log("error during loading"+ path);
+    }
+  });
+}
 
 // Events
 $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_gallery_weddingAndLoveStory).done(function() {
+  
+  $(".content_gallery").unitegallery({
+    gallery_theme:"tiles"
+  });
+
+
+  $(window).resize(function(){
+    calc();
+  });
+
   $(".openCloseButton").click(function(){
     $(".title").fadeOut("slow", function(){
       $(".globalContent").fadeIn("slow");
@@ -61,11 +101,11 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
 
   $(".galleriesContainer").click(function(){
     $(".content").removeClass("content--active");
-    $("#content_"+this.id).addClass("content--active");
+    $("#content_"+this.id).addClass("content_gallery--active");
   });
 
   $("#js_backToGalleries").click(function(){
-    $(this).parent().removeClass("content--active");
+    $(this).parent().removeClass("content_gallery--active");
     $("#content_galleries").addClass("content--active");
 
   });
@@ -124,13 +164,5 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
         $("#js_successMessage_sent").fadeIn();
       }
     }
-  });
-
-  $(".galleryImage").click(function(){
-    $(this).toggleClass("galleryImage--large");
-  })
-
-  $(window).resize(function(){
-    calc();
   });
 });

@@ -1,3 +1,7 @@
+// Reference to the library
+var apiUnitegalleryArray = [];
+var galleryCategories = ["weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
+
 // Includers
 var deferred_menu = $.Deferred();
 $("#js_menuContainer").load("view/menu.html", function() {
@@ -24,11 +28,22 @@ $("#js_aboutMe").load("view/aboutMe.html", function() {
   deferred_aboutMe.resolve();
 });
 
-var deferred_gallery_weddingAndLoveStory = $.Deferred();
-$("#js_gallery_weddingAndLoveStory").load("view/gallery_weddingAndLoveStory.html", function() {
-  loadImages("weddingAndLoveStory", deferred_gallery_weddingAndLoveStory);
+// Load galleries's pages
+var deferred_allGalleries = $.Deferred();
+var deferredArray = [];
+for(var i=0; i<galleryCategories.length; i++){
+  var deferred = $.Deferred();
+  deferredArray.push(deferred);
+  $("#js_gallery_"+galleryCategories[i]).load("view/gallery_"+galleryCategories[i]+".html", (function (x) {
+    loadImages(galleryCategories[x], deferred);
+  })(i));
+};
+
+$.when.apply($, deferredArray).done(function() {
+  deferred_allGalleries.resolve();
 });
 
+// Load images
 function loadImages(path, deferred){
   console.log("loading "+path+"...");
   var folder = "../image/"+path;
@@ -39,17 +54,20 @@ function loadImages(path, deferred){
     success: function(data) {
       $(data).find("a").attr("href", function (i, val) {
           if(val.match(/\.(jpe?g|png|gif)$/)) { 
-            //$("#content_gallery_"+path).append('<div class="galleryImageContainer" id="galleryImageContainer__'+i+'"><img src="'+val+'" class="galleryImage"/></div>');
-            $("#content_gallery_"+path).append('<img alt="coucou" src="'+val+'" class="galleryImage"/>');
-            /*var currentGalleryImage = $("#galleryImageContainer__"+i).find(".galleryImage");
-            if(currentGalleryImage[0] && currentGalleryImage[0].naturalWidth < currentGalleryImage[0].naturalHeight){
-              $("#galleryImageContainer__"+i).addClass("galleryImageContainer--portrait");
-            }
-            else{
-              $("#galleryImageContainer__"+i).addClass("galleryImageContainer--landscape"); 
-            }*/
+            $("#content_gallery_"+path).append('<img alt="" src="'+val+'" class="galleryImage"/>');
           } 
       });
+
+      var apiUnitegallery = $("#content_gallery_"+path).unitegallery({
+        gallery_theme:"tiles"
+      });
+
+      apiUnitegalleryArray.push(apiUnitegallery);
+
+      setTimeout(function(){
+        $("#content_gallery_"+path).hide();
+      }, 2000);
+
       console.log(path+" loaded");
       deferred.resolve();
     },
@@ -60,54 +78,72 @@ function loadImages(path, deferred){
 }
 
 // Events
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_gallery_weddingAndLoveStory).done(function() {
-  
-  $(".content_gallery").unitegallery({
-    gallery_theme:"tiles"
-  });
-
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_allGalleries).done(function() {
 
   $(window).resize(function(){
     calc();
   });
 
-  $(".openCloseButton").click(function(){
-    $(".title").fadeOut("slow", function(){
-      $(".globalContent").fadeIn("slow");
+  $("#js_openCloseButton").click(function(){
+    $("#js_title").fadeOut("slow", function(){
+      $("#js_globalContent").fadeIn("slow");
     });
     $(".menuContainer").toggleClass("menuContainer--opened");
-    $(".globalContent").toggleClass("globalContent--reduced");
+      $("#js_globalContent").toggleClass("globalContent--reduced");
     calc();
   });
 
   function calc(){
     var contentContainerWidth = $(window).width() * 0.8;
-    if($(".globalContent").hasClass("globalContent--reduced")){
-      $(".globalContent").width(contentContainerWidth-300);
+    if($("#js_globalContent").hasClass("globalContent--reduced")){
+      $("#js_globalContent").width(contentContainerWidth-300);
     }
     else{
-      $(".globalContent").width(contentContainerWidth);
+      $("#js_globalContent").width(contentContainerWidth);
     }
+
+    setTimeout(function(){
+      for(var i=0; i<apiUnitegalleryArray.length;i++){
+        apiUnitegalleryArray[i].resize($("#js_globalContent").width());
+      }
+    }, 750);
   }
 
+  // Click on menu category
   $(".category").click(function(){
+    // Hide gallery pages
+    $(".content_gallery").hide();
+    $("#js_backToGalleries").hide();
+    // Update menu categories
     $(".category").removeClass("category--active");
     $(this).addClass("category--active");
     $(".icon").removeClass("icon--active");
     $(this).find(".icon").addClass("icon--active");
+    // Update the content view
     $(".content").removeClass("content--active");
     $("#content_"+this.id).addClass("content--active");
   });
 
+  // Click on a gallery
   $(".galleriesContainer").click(function(){
+    // Hide the galleries page
     $(".content").removeClass("content--active");
-    $("#content_"+this.id).addClass("content_gallery--active");
+    // Display the selected gallery page
+    $("#content_"+this.id).parent().find(".content_gallery").show();
+    $("#js_backToGalleries").show();
+    // Resize galleries
+    for(var i=0; i<apiUnitegalleryArray.length;i++){
+      apiUnitegalleryArray[i].resize($("#js_globalContent").width());
+    }
   });
 
+  // Click on back to galleries
   $("#js_backToGalleries").click(function(){
-    $(this).parent().removeClass("content_gallery--active");
+    // Hide gallery pages
+    $(".content_gallery").hide();
+    $("#js_backToGalleries").hide();
+    // Display the galleries page
     $("#content_galleries").addClass("content--active");
-
   });
 
   $(".contact").hover(      

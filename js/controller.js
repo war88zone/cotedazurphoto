@@ -18,6 +18,11 @@ $("#js_galleries").load("view/galleries.html", function() {
   deferred_galleries.resolve();
 });
 
+var deferred_slideshow = $.Deferred();
+$("#js_slideshow").load("view/slideshow.html", function() {
+  deferred_slideshow.resolve();
+});
+
 var deferred_contact = $.Deferred();
 $("#js_contact").load("view/contact.html", function() {
   deferred_contact.resolve();
@@ -64,9 +69,7 @@ function loadImages(path, deferred){
 
       apiUnitegalleryArray.push(apiUnitegallery);
 
-      setTimeout(function(){
-        $("#content_gallery_"+path).hide();
-      }, 2000);
+      $("#content_gallery_"+path).hide();
 
       console.log(path+" loaded");
       deferred.resolve();
@@ -78,7 +81,7 @@ function loadImages(path, deferred){
 }
 
 // Events
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_allGalleries).done(function() {
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_allGalleries, deferred_slideshow).done(function() {
 
   $(window).resize(function(){
     calc();

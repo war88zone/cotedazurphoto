@@ -1,6 +1,7 @@
 // Reference to the library
 var apiUnitegalleryArray = [];
-var galleryCategories = ["weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
+var galleryCategories = ["weddingAndLoveStory", "blackAndWhite"];
+//var galleryCategories = ["weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
 
 // Includers
 var deferred_menu = $.Deferred();
@@ -87,14 +88,22 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
     calc();
   });
 
+  $("#js_title_button").click(function(){
+    openCloseMenu();
+  });
+
   $("#js_openCloseButton").click(function(){
+    openCloseMenu();
+  });
+
+  function openCloseMenu(){
     $("#js_title").fadeOut("slow", function(){
       $("#js_globalContent").fadeIn("slow");
     });
     $(".menuContainer").toggleClass("menuContainer--opened");
       $("#js_globalContent").toggleClass("globalContent--reduced");
     calc();
-  });
+  }
 
   function calc(){
     var contentContainerWidth = $(window).width() * 0.8;
@@ -120,8 +129,8 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
     // Update menu categories
     $(".category").removeClass("category--active");
     $(this).addClass("category--active");
-    $(".icon").removeClass("icon--active");
-    $(this).find(".icon").addClass("icon--active");
+    $(".category_icon").removeClass("icon--active");
+    $(this).find(".category_icon").addClass("icon--active");
     // Update the content view
     $(".content").removeClass("content--active");
     $("#content_"+this.id).addClass("content--active");

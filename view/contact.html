@@ -1,10 +1,10 @@
 <div id="content_contact" class="content">
 	<div class="contactContainer">
-		<div class="content_title">CONTACT ME</div>
+		<div class="content_title" data-bind="html: contact_global_title"></div>
 		<div class="content_separator"></div>
-		<p>Quisque id odio. Fusce a quam. Duis leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus.</p>
+		<p data-bind="html: contact_global_text"></p>
 
-		<div class="content_title">MY LINKS</div>
+		<div class="content_title" data-bind="html: contact_links_title"></div>
 		<div class="content_separator"></div>
 
 		<div class="contactsContainer">
@@ -30,21 +30,21 @@
 			</div>
 		</div>
 
-		<div class="content_title">SEND ME AN EMAIL</div>
+		<div class="content_title" data-bind="html: contact_mail_title"></div>
 		<div class="mailContainer">
 			<div class="inputs">
-				<input id="js_inputName" class="input_name" placeholder="Name" type="text" name="name"/>
-				<div id="js_errorName_empty" class="error">Please fill this field!</div>
+				<input id="js_inputName" class="input_name" data-bind="attr: { placeholder: contact_name_placeholder }" type="text" name="name"/>
+				<div id="js_errorName_empty" class="error" data-bind="html: contact_mail_emptyError"></div>
 
-				<input id="js_inputEmail" class="input_email" placeholder="Email" type="text" name="email"/>
-				<div id="js_errorEmail_empty" class="error">Please fill this field!</div>
-				<div id="js_errorEmail_format" class="error">Please fill a valid email!</div>
+				<input id="js_inputEmail" class="input_email" data-bind="attr: { placeholder: contact_email_placeholder }" type="text" name="email"/>
+				<div id="js_errorEmail_empty" class="error" data-bind="html: contact_mail_emptyError"></div>
+				<div id="js_errorEmail_format" class="error" data-bind="html: contact_mail_emailFormatError"></div>
 
-				<textarea id="js_inputMessage" placeholder="Message" name="message" rows="10" class="textarea_message"></textarea>
-				<div id="js_errorMessage_empty" class="error">Please fill this field!</div>
-				<div id="js_successMessage_sent" class="success">Your message has been sent!</div>
+				<textarea id="js_inputMessage" data-bind="attr: { placeholder: contact_message_placeholder }" name="message" rows="10" class="textarea_message"></textarea>
+				<div id="js_errorMessage_empty" class="error" data-bind="html: contact_mail_emptyError"></div>
+				<div id="js_successMessage_sent" class="success" data-bind="html: contact_mail_validated"></div>
 
-				<div class="buttonSendContainer"><div class="buttonSend">Send</div></div>
+				<div class="buttonSendContainer"><div class="buttonSend" data-bind="html: contact_mail_button"></div></div>
 			</div>
 		</div>
 	</div>

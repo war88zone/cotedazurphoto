@@ -12,7 +12,7 @@
 <body>
 	<div class="globalContainer">
 		<!-- TITLE -->
-		<div id="js_title" class="title">Tetiana Kushchynska</br>Photographer</div>
+		<div id="js_title" class="title" data-bind="html: website_title"></div>
 		<!-- CONTENT -->
 		<div id="js_globalContent" class="globalContent">
 			<!-- GALLERIES -->
@@ -20,6 +20,7 @@
 			<div id="js_backToGalleries" class="backToGalleriesContainer">
 				<div class="backToGalleriesContent"></div>
 			</div>
+			<div id="js_gallery_portrait"></div>
 			<div id="js_gallery_weddingAndLoveStory"></div>
 			<div id="js_gallery_family"></div>
 			<div id="js_gallery_littleRiviera"></div>
@@ -41,6 +42,8 @@
 	<script type='text/javascript' src="lib/jquery-3.1.1.min.js"></script>
 	<script type='text/javascript' src='lib/unitegallery.min.js'></script>
 	<script type='text/javascript' src='lib/ug-theme-tiles.js'></script>
+	<script type='text/javascript' src='lib/knockout.js'></script>
+	<script type='text/javascript' src="js/languages.js"></script>
 	<script type='text/javascript' src="js/controller.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 // Reference to the library
 var apiUnitegalleryArray = [];
-var galleryCategories = ["weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
+var galleryCategories = ["portrait", "weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
 
 // Includers
 var deferred_menu = $.Deferred();
@@ -83,6 +83,8 @@ function loadImages(path, deferred){
 // Events
 $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, deferred_aboutMe, deferred_allGalleries, deferred_slideshow).done(function() {
 
+  ko.applyBindings(new viewModel());
+
   $(window).resize(function(){
     calc();
   });
@@ -120,8 +122,8 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
     // Update menu categories
     $(".category").removeClass("category--active");
     $(this).addClass("category--active");
-    $(".icon").removeClass("icon--active");
-    $(this).find(".icon").addClass("icon--active");
+    $(".category_icon").removeClass("icon--active");
+    $(this).find(".category_icon").addClass("icon--active");
     // Update the content view
     $(".content").removeClass("content--active");
     $("#content_"+this.id).addClass("content--active");
@@ -188,7 +190,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
   }
 
   $(".buttonSendContainer").click(function(){
-    if(!$(".buttonSend").addClass("buttonSend--disabled")){
+    if(!$(".buttonSend").hasClass("buttonSend--disabled")){
       hideFeedbackMessage();
 
       var name = displayFeedbackMessage("#js_inputName", "#js_errorName_empty");
@@ -200,7 +202,17 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
       var message = displayFeedbackMessage("#js_inputMessage", "#js_errorMessage_empty");
 
       if(name && email && emailValidated && message){
+        $("#js_inputName").val("");
+        $("#js_inputEmail").val("");
+        $("#js_inputMessage").val("");
+        $(".buttonSend").addClass("buttonSend--disabled");
         $("#js_successMessage_sent").fadeIn();
+        setTimeout(function(){
+          $(".buttonSend").removeClass("buttonSend--disabled");
+        }, 10000);
+      }
+      else{
+        $(".buttonSend").removeClass("buttonSend--disabled");
       }
     }
   });

@@ -89,14 +89,22 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_contact, de
     calc();
   });
 
+  $("#js_title_button").click(function(){
+    openCloseMenu();
+  });
+
   $("#js_openCloseButton").click(function(){
+    openCloseMenu();
+  });
+
+  function openCloseMenu(){
     $("#js_title").fadeOut("slow", function(){
       $("#js_globalContent").fadeIn("slow");
     });
     $(".menuContainer").toggleClass("menuContainer--opened");
       $("#js_globalContent").toggleClass("globalContent--reduced");
     calc();
-  });
+  }
 
   function calc(){
     var contentContainerWidth = $(window).width() * 0.8;

@@ -25,6 +25,9 @@ var languages = {
 		contact_mail_validated: "Your message has been sent!",
 		contact_mail_placeholder: "Message",
 		contact_mail_button: "Send",
+		// Collaboration
+		collaboration_global_title: "You want to collaborate with me?",
+		collaboration_global_text: "You're a talented model, makeup artist, hair stylist, photographer or a very creative person?</br></br>You're ready for creative ideas realisations and experiments?</br></br>Join the team of professionals. Together we will create wonderful masterpieces and expand our portfolio! Collaboration is all expenses paid.</br></br>Any questions, ideas, suggestions, please contact us by this email address cotedazurphoto@gmail.com or by this phone number +3(3) 771 42 78 34.</br></br>See you soon!",
 		// About me
 		aboutMe_global_title: "Hi my name is Tetiana Kushchynska",
 		aboutMe_global_text: "",
@@ -61,6 +64,9 @@ var languages = {
 		contact_email_placeholder: "Email",
 		contact_message_placeholder: "Message",
 		contact_mail_button: "Envoyer",
+		// Collaboration
+		collaboration_global_title: "Tu as envie de collaborer avec moi ?",
+		collaboration_global_text: "Tu es un talentueux modèle, maquilleur, coiffeur, photographe ou une personne très créative ?</br></br>Tu es prêt(e) pour des idées créatives de réalisation et d'expériences ?</br></br>Rejoins une équipe de professionnels. Nous allons créer des chefs-d'œuvres et élargir notre portfolio ensemble! La collaboration est tout frais payés.</br></br>Pour toutes questions, idées, suggestions, tu peux me contacter via l'email cotedazurphoto@gmail.com ou par téléphone +3 (3) 771 42 78 34.</br></br>A très bientot !",
 		// About me
 		aboutMe_global_title: "Salut, je m'appelle Tetiana Kushchynska",
 		aboutMe_global_text: "Un texte pour presenter Tetiana",
@@ -111,6 +117,9 @@ var viewModel = function() {
   this.contact_email_placeholder = ko.observable(languages[userLanguage].contact_email_placeholder);
   this.contact_message_placeholder = ko.observable(languages[userLanguage].contact_message_placeholder);
   this.contact_mail_button = ko.observable(languages[userLanguage].contact_mail_button);
+  // Collaboration
+  this.collaboration_global_title = ko.observable(languages[userLanguage].collaboration_global_title);
+  this.collaboration_global_text = ko.observable(languages[userLanguage].collaboration_global_text);
   // About me
   this.aboutMe_global_title = ko.observable(languages[userLanguage].aboutMe_global_title);
   this.aboutMe_global_text = ko.observable(languages[userLanguage].aboutMe_global_text);

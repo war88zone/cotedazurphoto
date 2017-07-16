@@ -1,10 +1,13 @@
 body {
 	margin: 0;
 	background-color: #5e5d5d;
-	background: url("../image/background.jpg");
+	background: url("../image/backgrounds/background1.jpg");
 	background-size: cover; 
 	background-attachment: fixed;
+	background-repeat: no-repeat;
+	transition: background-image 1s ease-in-out;
 }
+
 
 a, a:link, a:visited, a:active {
   	color: white;
@@ -51,32 +54,29 @@ input, textarea {
 }
 
 .title_button {
+	width: 150px;
+  	height: 40px;
 	font-family: 'Open Sans',sans-serif;
-    font-size: 25px;
+    font-size: 17px;
     cursor: pointer;
     display: inline-block;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: .5em 1em;
-    line-height: 25px;
-    border-radius: 15px 0 15px 0;
-}
-
-.title_icon {
-	width: 25px;
-	height: 25px;
-	display: inline-block;
-	margin-right: 10px;
-	margin-bottom: 1px;
-	vertical-align: bottom;
-	background-size: cover;
-	.icon_title;
+    background-color: white;
+    border-radius: 5px;
+    color: #368ffb;
+    line-height: 40px;
+    user-select: none;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .title_button:hover {
-	color: #70b1ff;
-	.title_icon {
-		.icon_title--hover;
-	}
+	transform: scale(1.05);
+}
+
+.buttonSend:active {
+  transform: scale(1.1);
 }
 
 .globalContent {
@@ -103,6 +103,12 @@ input, textarea {
   	font-size: 0.9em;
 }
 
+@media screen and (max-width: 800px) {
+	.content {
+		font-size: 1.5em;
+	}
+}
+
 .content--active {
 	display: flex;
 }
@@ -126,6 +132,7 @@ input, textarea {
 @import "menu.less";
 @import "galleries.less";
 @import "contact.less";
+@import "collaboration.less";
 @import "aboutMe.less";
 @import "gallery.less";
 @import "slideshow.less";

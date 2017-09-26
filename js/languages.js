@@ -17,7 +17,7 @@ var languages = {
 		galleries_blackAndWhite: "Black and white",
 		// Contact
 		contact_global_title: "Contact me",
-		contact_global_text: "",
+		contact_global_text: "Contacting me is very simple: you can use any convenient method (by phone, email, FB, VK, Viber, etc).</br></br>All contact information is given below.</br></br>Also you can contact me by sending a message using the form below.",
 		contact_links_title: "My links",
 		contact_mail_title: "Send me an email",
 		contact_mail_emptyError: "Please fill this field!",
@@ -27,14 +27,15 @@ var languages = {
 		contact_mail_button: "Send",
 		// Collaboration
 		collaboration_global_title: "You want to collaborate with me?",
-		collaboration_global_text: "You're a talented model, makeup artist, hair stylist, photographer or a very creative person?</br></br>You're ready for creative ideas realisations and experiments?</br></br>Join the team of professionals. Together we will create wonderful masterpieces and expand our portfolio! Collaboration is all expenses paid.</br></br>Any questions, ideas, suggestions, please contact us by this email address cotedazurphoto@gmail.com or by this phone number +3(3) 771 42 78 34.</br></br>See you soon!",
+		collaboration_global_text1: "You're a talented model, makeup artist, hair stylist, photographer or a very creative person?",
+		collaboration_global_text2: "You're ready for creative ideas realisations and experiments?</br></br>Join the team of professionals. Together we will create wonderful masterpieces and expand our portfolio! Collaboration is all expenses paid.</br></br>Any questions, ideas, suggestions, please contact us by this email address cotedazurphoto@gmail.com or by this phone number +3(3) 771 42 78 34.</br></br>See you soon!",
 		// About me
 		aboutMe_global_title: "Hi my name is Tetiana Kushchynska",
-		aboutMe_global_text: "",
+		aboutMe_global_text: "I'm a photographer and I love to shoot portraits. When in the distant 2010 I seriously took the camera in my hands and since then I have not released it.</br></br>I shoot a lot and in different ways, but all time with my soul, sincere emotions and inspiration.</br></br>Each portrait is a story about your life, your feelings.</br></br>I like so much to create beautiful photos with you, full of happy moments, which one day will necessarily become memories and live on the pages of family albums.",
 		aboutMe_facts_title: "Facts about me",
-		aboutMe_facts_text: "",
+		aboutMe_facts_text: "- I love photography and I'm ready for photography for almost everything.</br></br>- 2010-2011 studied at the photo-school ICF (Ukraine).</br></br>- I like to experiment both in creativity and in life.</br></br>- My weakness is sweet, especially chocolate :) + of course, coffee.</br></br>- Travel is my second passion after photography.",
 		aboutMe_skill_title: "Skill set",
-		aboutMe_skill_text: ""
+		aboutMe_skill_text: "- Family photography</br></br>- Portrait photography</br></br>- Romantic photography (Love-story)</br></br>- Shooting children</br></br>- Shooting pregnant</br></br>- Studio shooting</br></br>- Artistic and technical retouching of photo</br></br>- Languages - French, English, Russian, Ukrainian"
 	},
 	"fr": {
 		// Title of the website
@@ -54,11 +55,11 @@ var languages = {
 		galleries_blackAndWhite: "Noir et blanc",
 		// Contact
 		contact_global_title: "Me contacter",
-		contact_global_text: "Un texte pour expliquer aux utilisateur comment prendre contact",
+		contact_global_text: "Pour me contacter c'est très simple: vous pouvez utiliser n'importe quelle méthode pratique (par téléphone, email, FB, VK, Viber, etc).</br></br>Toutes les informations de contact sont données ci-dessous.</br></br>Aussi, vous pouvez me contacter en envoyant un message en utilisant le formulaire ci-dessous.",
 		contact_links_title: "Mes liens",
 		contact_mail_title: "M'envoyer un e-mail",
 		contact_mail_emptyError: "Veuillez remplir le champ svp !",
-		contact_mail_emailFormatError: "Veuillez replir le champ avec un mail valide svp !",
+		contact_mail_emailFormatError: "Veuillez remplir le champ avec un mail valide svp !",
 		contact_mail_validated: "Votre message à été envoyé",
 		contact_name_placeholder: "Name",
 		contact_email_placeholder: "Email",
@@ -66,14 +67,55 @@ var languages = {
 		contact_mail_button: "Envoyer",
 		// Collaboration
 		collaboration_global_title: "Tu as envie de collaborer avec moi ?",
-		collaboration_global_text: "Tu es un talentueux modèle, maquilleur, coiffeur, photographe ou une personne très créative ?</br></br>Tu es prêt(e) pour des idées créatives de réalisation et d'expériences ?</br></br>Rejoins une équipe de professionnels. Nous allons créer des chefs-d'œuvres et élargir notre portfolio ensemble! La collaboration est tout frais payés.</br></br>Pour toutes questions, idées, suggestions, tu peux me contacter via l'email cotedazurphoto@gmail.com ou par téléphone +3 (3) 771 42 78 34.</br></br>A très bientot !",
+		collaboration_global_text1: "Tu es un talentueux modèle, maquilleur, coiffeur, photographe ou une personne très créative ?",
+		collaboration_global_text2: "Tu es prêt(e) pour des idées créatives de réalisation et d'expériences ?</br></br>Rejoins une équipe de professionnels. Nous allons créer des chefs-d'œuvres et élargir notre portfolio ensemble! La collaboration est tout frais payés.</br></br>Pour toutes questions, idées, suggestions, tu peux me contacter via l'email cotedazurphoto@gmail.com ou par téléphone +3 (3) 771 42 78 34.</br></br>A très bientot !",
 		// About me
 		aboutMe_global_title: "Salut, je m'appelle Tetiana Kushchynska",
-		aboutMe_global_text: "Un texte pour presenter Tetiana",
+		aboutMe_global_text: "Je suis photographe et j'adore photographier des portraits. Lorsque dans le lointain 2010, j'ai sérieusement pris la caméra entre mes mains et depuis lors, je ne l'ai pas relâché.</br></br>Je photographie beaucoup et de différentes manières, mais tout le temps avec mon âme, sentiments sincères et inspiration.</br></br>Chaque portrait est une histoire de votre vie, de vos sentiments.</br></br>J'aime tellement créer de belles photos avec vous, pleins de moments heureux, qui un jour deviendront nécessairement des souvenirs et vivront sur les pages des albums familiaux.",
 		aboutMe_facts_title: "Pour en savoir plus sur moi",
-		aboutMe_facts_text: "Un texte pour expliquer un truc sur Tetiana",
+		aboutMe_facts_text: "- J'aime la photographie et je suis prête pour la photographie pour presque tout.</br></br>- 2010-2011 étudié à l'ICF photo-école (Ukraine).</br></br>- J'aime expérimenter à la fois la créativité et la vie.</br></br>- Ma faiblesse est douce, surtout le chocolat :) + bien sûr, le café.</br></br>- Le voyage est ma deuxième passion après la photographie.",
 		aboutMe_skill_title: "Talents",
-		aboutMe_skill_text: "Un texte pour expliquer les talents de Tetiana"
+		aboutMe_skill_text: "- Photographie familiale</br></br>- Photographie de portrait</br></br>- Photographie romantique (Love-story)</br></br>- Photographie de enfants</br></br>- Photographie de grossesse</br></br>- Photographie de studio</br></br>- Retouche artistique et technique de photo</br></br>- Langues - Français, Anglais, Russe, Ukrainien"
+	},
+	"ru": {
+		// Title of the website
+		website_title: "Фотограф</br>Татьяна Кущинская",
+		// Menu
+		menu_galleries: "Галерии",
+		menu_slideshow: "Слайд-шоу", 
+		menu_contact: "Контакты",
+		menu_collaboration: "Сотрудничество",
+		menu_aboutme: "Обо мне",
+		// Galleries
+		galleries_portrait: "Портрет",
+		galleries_weddingAndLoveStory: "Свадебные и романтические фотосессии",
+		galleries_family: "Семья",
+		galleries_littleRiviera: "Лазурный берег",
+		galleries_artProject: "Творческие проекты",
+		galleries_blackAndWhite: "ЧБ",
+		// Contact
+		contact_global_title: "Связаться со мной",
+		contact_global_text: "Связаться со мной очень просто: Вы можете использовать любой удобный способ (по телефону, email, FB, VK, Viber и другие).</br></br>Вся контактная информация приведена ниже.</br></br>Также Вы можете связаться со мной, отправив сообщение с помощью формы, приведенной внизу.",
+		contact_links_title: "Мои контакты",
+		contact_mail_title: "Отправить email",
+		contact_mail_emptyError: "Заполните, пожалуйста, пустые поля !",
+		contact_mail_emailFormatError: "Введите, пожалуйста, правильный email!",
+		contact_mail_validated: "Ваше сообщение было отправлено",
+		contact_name_placeholder: "Имя",
+		contact_email_placeholder: "Email",
+		contact_message_placeholder: "Сообщение",
+		contact_mail_button: "Отправить",
+		// Collaboration
+		collaboration_global_title: "Ты хочешь сотрудничать со мной ?",
+		collaboration_global_text1: "Ты талантливая модель / визажист / парикмахер / фотограф / очень творческая личность?",
+		collaboration_global_text2: "Готов к реализации творческих идей и экспериментам?</br></br>Присоединяйся к команде профессионалов. Вместе мы создадим прекрасные шедевры и расширим наши портфолио!Мы предлагаем сотрудничество на условиях TFP.</br></br>Все вопросы, идеи, предложения ждем по адресу cotedazurphoto@gmail.com или по телефону +3(3)771 42 78 34.</br></br>До скорых встреч!",
+		// About me
+		aboutMe_global_title: "Здравствуйте, меня зовут Татьяна Кущинская",
+		aboutMe_global_text: "Я - фотограф и обожаю снимать портреты. Когда в далеком 2010 году я всерьез взяла камеру в руки и с тех пор ее не выпускаю.</br></br>Фотографирую много и по-разному, главное с душой, искренними эмоциями и вдохновением.</br></br>Каждый портрет - это история о вашей жизни, о ваших чувствах.</br></br>Мне очень нравиться создавать с вами красивые фотографии, полные счастливых моментов, которые когда-нибудь обязательно станут воспоминаниями и будут жить на страницах семейных альбомов.",
+		aboutMe_facts_title: "Факты обо мне",
+		aboutMe_facts_text: "- Очень люблю фотографировать и готова ради фотографии почти на все.</br></br>- 2010-2011 училась в фотошколе ИЦФ (Украина).</br></br>- Люблю эксперементировать и в творчестве, и в жизни.</br></br>- Моя слабость - это сладкое, особенно шоколад :) + конечно, кофе.</br></br>Путешествия - моя вторая страсть после фотографии.",
+		aboutMe_skill_title: "Таланты",
+		aboutMe_skill_text: "- Семейная фотография</br></br>- Портретная фотография</br></br>- Романтическая съемка (Love-story)</br></br>- Съемка детей</br></br>- Съемка беременных</br></br>- Студийная съемка</br></br>- Художественная и техническая ретушь фотографий</br></br>- Знание языков - французский, английский, русский, украинский"
 	}
 };
 
@@ -119,7 +161,8 @@ var viewModel = function() {
   this.contact_mail_button = ko.observable(languages[userLanguage].contact_mail_button);
   // Collaboration
   this.collaboration_global_title = ko.observable(languages[userLanguage].collaboration_global_title);
-  this.collaboration_global_text = ko.observable(languages[userLanguage].collaboration_global_text);
+  this.collaboration_global_text1 = ko.observable(languages[userLanguage].collaboration_global_text1);
+  this.collaboration_global_text2 = ko.observable(languages[userLanguage].collaboration_global_text2);
   // About me
   this.aboutMe_global_title = ko.observable(languages[userLanguage].aboutMe_global_title);
   this.aboutMe_global_text = ko.observable(languages[userLanguage].aboutMe_global_text);

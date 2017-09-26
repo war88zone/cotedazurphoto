@@ -1,6 +1,6 @@
-var apiUnitegalleryArray = [];
 var lastBackgroundIndex = 1;
 var isMobile = false;
+var currentGalleryId = "";
 
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  isMobile = true;
@@ -13,9 +13,6 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
 
   ko.applyBindings(new viewModel());
 
-  $(window).resize(function(){
-    calc();
-  });
 
   $("#js_openCloseButton").click(function(){
     openMenu();
@@ -23,10 +20,11 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
 
   function runCarroussel () {
     if(!isMobile){
+      let numberOfBackgrounds = 6;
       backgroundInterval = setInterval(function(){
-        let backgroundIndex = Math.floor(Math.random() * (10 - 1 +1)) + 1;
+        let backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
         while (backgroundIndex == lastBackgroundIndex) {
-          backgroundIndex = Math.floor(Math.random() * (10 - 1 +1)) + 1;
+          backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
         }
         lastBackgroundIndex = backgroundIndex;
 
@@ -45,7 +43,6 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     });
     $(".menuContainer").toggleClass("menuContainer--opened");
     $("#js_globalContent").toggleClass("globalContent--reduced");
-    calc();
   }
 
   function closeMenu(){
@@ -56,26 +53,16 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $("#js_globalContent").toggleClass("globalContent--reduced");
   }
 
-  function calc(){
-    var contentContainerWidth = $(window).width() * 0.8;
-    if($("#js_globalContent").hasClass("globalContent--reduced")){
-      $("#js_globalContent").width(contentContainerWidth-$(".menuContainer").width());
-    }
-    else{
-      $("#js_globalContent").width(contentContainerWidth);
-    }
-
-    setTimeout(function(){
-      for(var i=0; i<apiUnitegalleryArray.length;i++){
-        apiUnitegalleryArray[i].resize($("#js_globalContent").width());
-      }
-    }, 750);
-  }
+  $("#js_title").click(function(){
+    openMenu();
+  });
 
   // Click on menu category
   $(".category").click(function(){
     // Hide gallery pages
-    $(".content_gallery").hide();
+    if(currentGalleryId != ""){
+      $("#js_"+currentGalleryId).addClass("content_gallery_hidden");
+    }
     $("#js_backToGalleries").hide();
     // Update menu categories
     $(".category").removeClass("category--active");
@@ -92,18 +79,16 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     // Hide the galleries page
     $(".content").removeClass("content--active");
     // Display the selected gallery page
-    $("#content_"+this.id).parent().find(".content_gallery").show();
+    $("#js_"+this.id).removeClass("content_gallery_hidden");
+    currentGalleryId = this.id;
     $("#js_backToGalleries").show();
-    // Resize galleries
-    for(var i=0; i<apiUnitegalleryArray.length;i++){
-      apiUnitegalleryArray[i].resize($("#js_globalContent").width());
-    }
   });
 
   // Click on back to galleries
   $("#js_backToGalleries").click(function(){
     // Hide gallery pages
-    $(".content_gallery").hide();
+    $("#js_"+currentGalleryId).addClass("content_gallery_hidden");
+    currentGalleryId = "";
     $("#js_backToGalleries").hide();
     // Display the galleries page
     $("#content_galleries").addClass("content--active");

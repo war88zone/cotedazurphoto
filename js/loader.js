@@ -1,46 +1,53 @@
 var galleryCategories = ["portrait", "weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
 
 // Includers
-var deferred_menu = $.Deferred();
+let deferred_menu = $.Deferred();
 $("#js_menuContainer").load("view/menu.html", function() {
+  console.log("menu.html loaded");
   deferred_menu.resolve();
 }); 
 
-var deferred_socials = $.Deferred();
+let deferred_socials = $.Deferred();
 $("#js_socialsContainer").load("view/socials.html", function() {
+  console.log("socials.html loaded");
   deferred_socials.resolve();
 }); 
 
-var deferred_galleries = $.Deferred();
+let deferred_galleries = $.Deferred();
 $("#js_galleries").load("view/galleries.html", function() {
+  console.log("galleries.html loaded");
   deferred_galleries.resolve();
 });
 
-var deferred_slideshow = $.Deferred();
+let deferred_slideshow = $.Deferred();
 $("#js_slideshow").load("view/slideshow.html", function() {
+  console.log("slideshow.html loaded");
   deferred_slideshow.resolve();
 });
 
-var deferred_contact = $.Deferred();
+let deferred_contact = $.Deferred();
 $("#js_contact").load("view/contact.html", function() {
+  console.log("contact.html loaded");
   deferred_contact.resolve();
 });
 
-var deferred_collaboration = $.Deferred();
+let deferred_collaboration = $.Deferred();
 $("#js_collaboration").load("view/collaboration.html", function() {
+  console.log("collaboration.html loaded");
   deferred_collaboration.resolve();
 });
 
-var deferred_aboutMe = $.Deferred();
+let deferred_aboutMe = $.Deferred();
 $("#js_aboutMe").load("view/aboutMe.html", function() {
+  console.log("aboutMe.html loaded");
   deferred_aboutMe.resolve();
 });
 
 // Load galleries's pages
-var deferred_allGalleries = $.Deferred();
-var deferredArray = [];
-for(var i=0; i<galleryCategories.length; i++){
-  var deferred = $.Deferred();
+let deferred_allGalleries = $.Deferred();
+let deferredArray = [];
+for(let i=0; i<galleryCategories.length; i++){
+  let deferred = $.Deferred();
   deferredArray.push(deferred);
   $("#js_gallery_"+galleryCategories[i]).load("view/gallery_"+galleryCategories[i]+".html", (function (x) {
     loadImages(galleryCategories[x], deferred);
@@ -53,25 +60,25 @@ $.when.apply($, deferredArray).done(function() {
 
 // Load images
 function loadImages(path, deferred){
-  var folder = "../image/"+path;
-  var i = 0;
+  let folder = "../image/"+path;
+  let i = 0;
 
   $.ajax({
     url : folder,
     success: function(data) {
       $(data).find("a").attr("href", function (i, val) {
-          if(val.match(/\.(jpe?g|png|gif)$/)) { 
+          if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
             $("#content_gallery_"+path).append('<img alt="" src="'+val+'" class="galleryImage"/>');
           } 
       });
 
-      var apiUnitegallery = $("#content_gallery_"+path).unitegallery({
+      let apiUnitegallery = $("#content_gallery_"+path).unitegallery({
         gallery_theme:"tiles"
       });
 
-      apiUnitegalleryArray.push(apiUnitegallery);
+      $("#js_gallery_"+path).addClass("content_gallery_hidden");
 
-      $("#content_gallery_"+path).hide();
+      console.log(path + " loaded");
       deferred.resolve();
     },
     error: function(error) {

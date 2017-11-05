@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/core.css">
-	<link rel="stylesheet" type="text/css" href="css/unite-gallery.css">
-	<link rel='stylesheet' type="text/css" href='css/themes/default/ug-theme-default.css'>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Oswald:300,400,500,600|PT+Sans" rel="stylesheet">
-	<title>Cote d'Azur photo</title>
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/core.css">
+		<link rel="stylesheet" type="text/css" href="css/unite-gallery.css">
+		<link rel='stylesheet' type="text/css" href='css/themes/default/ug-theme-default.css'>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Oswald:300,400,500,600|PT+Sans" rel="stylesheet">
+		<title>Cote d'Azur photo</title>
+	</head>
 
-<body>
-	<div class="globalContainer">
-		<!-- TITLE -->
-		<div id="js_title" class="title">
-			<p class="title_text" data-bind="html: website_title"></p>
-		</div>
-		<!-- CONTENT -->
-		<div id="js_globalContent" class="globalContent">
-			<!-- GALLERIES -->
-			<div id="js_galleries"></div>
-			<div id="js_backToGalleries" class="backToGalleriesContainer">
-				<div class="backToGalleriesContent"></div>
+	<body>
+		<div class="globalContainer">
+			<!-- TITLE -->
+			<div id="js_title" class="title">
+				<p class="title_text" data-bind="html: website_title"></p>
 			</div>
-			<div id="js_gallery_portrait"></div>
-			<div id="js_gallery_weddingAndLoveStory"></div>
-			<div id="js_gallery_family"></div>
-			<div id="js_gallery_littleRiviera"></div>
-			<div id="js_gallery_artProject"></div>
-			<div id="js_gallery_blackAndWhite"></div>
-			<!-- SLIDESHOW -->
-			<div id="js_slideshow"></div>
-			<!-- CONTACT -->
-			<div id="js_contact"></div>
-			<!-- COLLABORATION -->
-			<div id="js_collaboration"></div>
-			<!-- ABOUTME -->
-			<div id="js_aboutMe"></div>
+			<!-- CONTENT -->
+			<div id="js_globalContent" class="globalContent">
+				<!-- GALLERIES -->
+				<div id="js_galleries"></div>
+				<div id="js_backToGalleries" class="backToGalleriesContainer">
+					<div class="backToGalleriesContent"></div>
+				</div>
+				<div id="js_gallery_portrait"></div>
+				<div id="js_gallery_weddingAndLoveStory"></div>
+				<div id="js_gallery_family"></div>
+				<div id="js_gallery_littleRiviera"></div>
+				<div id="js_gallery_artProject"></div>
+				<div id="js_gallery_blackAndWhite"></div>
+				<!-- SLIDESHOW -->
+				<div id="js_slideshow"><div id="player"></div></div>
+				<!-- CONTACT -->
+				<div id="js_contact"></div>
+				<!-- COLLABORATION -->
+				<div id="js_collaboration"></div>
+				<!-- ABOUTME -->
+				<div id="js_aboutMe"></div>
+			</div>
+			<!-- SOCIALS -->
+			<div id="js_socialsContainer"></div>
+			<!-- MENU -->
+			<div id="js_menuContainer"></div>
 		</div>
-		<!-- SOCIALS -->
-		<div id="js_socialsContainer"></div>
-		<!-- MENU -->
-		<div id="js_menuContainer"></div>
-	</div>
-	
-	<script type='text/javascript' src="lib/jquery-3.1.1.min.js"></script>
-	<script type='text/javascript' src='lib/unitegallery.min.js'></script>
-	<script type='text/javascript' src='lib/ug-theme-tiles.js'></script>
-	<script type='text/javascript' src='lib/knockout.js'></script>
-	<script type='text/javascript' src="js/emailSender.js"></script>
-	<script type='text/javascript' src="js/languages.js"></script>
-	<script type='text/javascript' src="js/loader.js"></script>
-	<script type='text/javascript' src="js/controller.js"></script>
-</body>
+		
+		<script type='text/javascript' src="lib/jquery-3.1.1.min.js"></script>
+		<script type='text/javascript' src='lib/unitegallery.min.js'></script>
+		<script type='text/javascript' src='lib/ug-theme-tiles.js'></script>
+		<script type='text/javascript' src='lib/knockout.js'></script>
+		<script type='text/javascript' src="js/emailSender.js"></script>
+		<script type='text/javascript' src="js/languages.js"></script>
+		<script type='text/javascript' src="js/loader.js"></script>
+		<script src="https://www.youtube.com/iframe_api"></script>
+		<script type='text/javascript' src="js/controller.js"></script>
+	</body>
 </html>

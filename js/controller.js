@@ -1,15 +1,27 @@
-var lastBackgroundIndex = 1;
+var lastBackgroundIndex = 0;
 var isMobile = false;
 var currentGalleryId = "";
+var youtubeAPIReady = false;
+var players = [];
+var playersIsReady = [];
+var player;
+
+function onYouTubeIframeAPIReady() {
+  youtubeAPIReady = true;
+}
 
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  isMobile = true;
 }
 
 // Events
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_allGalleries, deferred_backgroundImages).done(function() {
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages, deferred_allGalleries).done(function() {
   var backgroundInterval = null;
   runCarroussel();
+
+  if(youtubeAPIReady) {
+    manageSlideshows();
+  }
 
   ko.applyBindings(new viewModel());
 
@@ -20,16 +32,59 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
 
   function runCarroussel () {
     if(!isMobile){
-      let numberOfBackgrounds = 6;
       backgroundInterval = setInterval(function(){
         let backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
         while (backgroundIndex == lastBackgroundIndex) {
           backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
         }
+        // Number of background -> index
+        backgroundIndex--;
         lastBackgroundIndex = backgroundIndex;
 
-        $("body").css("background-image", "url(../image/backgrounds/background" + backgroundIndex + ".jpg)");
-      }, 4000);
+        $("body").css("background-image", "url(" + backgroundImages[backgroundIndex].src + ")");
+      }, 5000);
+    }
+  }
+
+  function manageSlideshows () {
+    var self = this;
+    $(".slideshowContent").each(function(){
+      var identifier = this.firstElementChild.id;
+      player = new YT.Player(identifier, {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+      self.players.push(player);
+    });
+  }
+
+
+  function onPlayerReady(event) {
+    currentIndex = event.target.a.id.split("slideshow")[1];
+    console.log(currentIndex + " is ready");
+  }
+
+  function onPlayerStateChange(event) {
+    currentIndex = event.target.a.id.split("slideshow")[1];
+    if(currentIndex && players.length ==  $(".slideshowContent").length){
+      console.log(players[currentIndex].getPlayerState());
+      if(players[currentIndex].getPlayerState() == 1) {
+        for (let i=0; i<players.length; i++){
+          if(players[i] != players[currentIndex]){
+            players[i].pauseVideo();
+          }
+        }
+      }
+    }
+  }
+
+  function stopSlideshowPlaying(){
+    for (let i=0; i<players.length; i++){
+      if(players[i].getPlayerState() == 1){
+        players[i].pauseVideo();
+      }
     }
   }
 
@@ -59,6 +114,8 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
 
   // Click on menu category
   $(".category").click(function(){
+    // Stop videos playing
+    stopSlideshowPlaying();
     // Hide gallery pages
     if(currentGalleryId != ""){
       $("#js_"+currentGalleryId).addClass("content_gallery_hidden");

@@ -1,4 +1,6 @@
 var galleryCategories = ["portrait", "weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
+var numberOfBackgrounds = 0;
+var backgroundImages = [];
 
 // Includers
 let deferred_menu = $.Deferred();
@@ -43,6 +45,30 @@ $("#js_aboutMe").load("view/aboutMe.html", function() {
   deferred_aboutMe.resolve();
 });
 
+var deferred_backgroundImages = $.Deferred();
+var folder = "../image/backgrounds";
+
+$.ajax({
+  url : folder,
+  success: function(data) {
+    $(data).find("a").attr("href", function (i, val) {
+      if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
+        backgroundImages[numberOfBackgrounds] = new Image();
+        //backgroundImages[numberOfBackgrounds].src = folder+'/'+val; // PROD
+        backgroundImages[numberOfBackgrounds].src = './'+val; // LOCAL
+        numberOfBackgrounds++;
+      }
+    });
+
+    console.log(numberOfBackgrounds+" background(s) loaded");
+    deferred_backgroundImages.resolve();
+  },
+  error: function(error) {    
+    console.log("error during loading backgrounds");
+    console.log(error);
+  }
+});
+
 // Load galleries's pages
 let deferred_allGalleries = $.Deferred();
 let deferredArray = [];
@@ -68,7 +94,8 @@ function loadImages(path, deferred){
     success: function(data) {
       $(data).find("a").attr("href", function (i, val) {
           if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
-            $("#content_gallery_"+path).append('<img alt="" src="'+val+'" class="galleryImage"/>');
+            //$("#content_gallery_"+path).append('<img alt="" src="'+folder+'/'+val+'" class="galleryImage"/>'); // PROD
+            $("#content_gallery_"+path).append('<img alt="" src="./'+val+'" class="galleryImage"/>'); // LOCAL
           } 
       });
 
@@ -87,17 +114,3 @@ function loadImages(path, deferred){
     }
   });
 }
-
-var deferred_backgroundImages = $.Deferred();
-var folder = "../image/backgrounds";
-
-$.ajax({
-  url : folder,
-  success: function(data) {
-    deferred_backgroundImages.resolve();
-  },
-  error: function(error) {    
-    console.log("error during loading backgrounds");
-    console.log(error);
-  }
-});

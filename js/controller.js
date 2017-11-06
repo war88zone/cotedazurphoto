@@ -5,6 +5,7 @@ var youtubeAPIReady = false;
 var players = [];
 var playersIsReady = [];
 var player;
+var target = false;
 
 function onYouTubeIframeAPIReady() {
   youtubeAPIReady = true;
@@ -24,6 +25,20 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   }
 
   ko.applyBindings(new viewModel());
+
+  $(".menuContainer").on("touchstart touchmove click", function(event){
+    target = true;
+    setTimeout(()=>{
+      target = false;
+    }, 100);
+  });
+
+
+  $("#js_globalContent").bind('touchstart touchmove click', function(event){
+    if(!target && $(".menuContainer").hasClass("menuContainer--opened")){
+      return false;
+    }
+  });
 
 
   $("#js_openCloseButton").click(function(){
@@ -98,14 +113,35 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     });
     $(".menuContainer").toggleClass("menuContainer--opened");
     $("#js_globalContent").toggleClass("globalContent--reduced");
+    
+    if(isMobile){
+      $("#js_globalContainer").toggleClass("globalContainer--noScroll");
+      $("#js_globalContent").toggleClass("maskContent");
+      $("#js_socialsContainer").toggleClass("maskContent");
+    }
   }
 
-  function closeMenu(){
+  function backToTitle(){
     $("#js_globalContent").fadeOut("slow", function(){
       $("#js_title").fadeIn("slow");
     });
-    $(".menuContainer").toggleClass("menuContainer--opened");
-    $("#js_globalContent").toggleClass("globalContent--reduced");
+    $(".menuContainer").removeClass("menuContainer--opened");
+    $("#js_globalContent").removeClass("globalContent--reduced");
+
+    if(isMobile){
+      $("#js_globalContainer").removeClass("globalContainer--noScroll");
+      $("#js_globalContent").removeClass("maskContent");
+      $("#js_socialsContainer").removeClass("maskContent");
+    }
+  }
+
+  function closeMenu(){
+    $(".menuContainer").removeClass("menuContainer--opened");
+    $("#js_globalContent").removeClass("globalContent--reduced");
+    $("#js_globalContainer").removeClass("globalContainer--noScroll");
+    $("#js_globalContent").removeClass("maskContent");
+    $("#js_socialsContainer").removeClass("maskContent");
+    
   }
 
   $("#js_title").click(function(){
@@ -129,6 +165,10 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     // Update the content view
     $(".content").removeClass("content--active");
     $("#content_"+this.id).addClass("content--active");
+
+    if(isMobile){
+      closeMenu();
+    }
   });
 
   // Click on a gallery
@@ -165,7 +205,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   });
 
   $("#js_iconMenu").click(function(){
-    closeMenu();
+    backToTitle();
     runCarroussel();
   });
 });

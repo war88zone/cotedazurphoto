@@ -54,8 +54,8 @@ $.ajax({
     $(data).find("a").attr("href", function (i, val) {
       if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
         backgroundImages[numberOfBackgrounds] = new Image();
-        //backgroundImages[numberOfBackgrounds].src = folder+'/'+val; // PROD
-        backgroundImages[numberOfBackgrounds].src = './'+val; // LOCAL
+        backgroundImages[numberOfBackgrounds].src = folder+'/'+val; // PROD
+        //backgroundImages[numberOfBackgrounds].src = './'+val; // LOCAL
         numberOfBackgrounds++;
       }
     });
@@ -94,8 +94,8 @@ function loadImages(path, deferred){
     success: function(data) {
       $(data).find("a").attr("href", function (i, val) {
           if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
-            //$("#content_gallery_"+path).append('<img alt="" src="'+folder+'/'+val+'" class="galleryImage"/>'); // PROD
-            $("#content_gallery_"+path).append('<img alt="" src="./'+val+'" class="galleryImage"/>'); // LOCAL
+            $("#content_gallery_"+path).append('<img alt="" src="'+folder+'/'+val+'" class="galleryImage"/>'); // PROD
+            //$("#content_gallery_"+path).append('<img alt="" src="./'+val+'" class="galleryImage"/>'); // LOCAL
           } 
       });
 

@@ -6,6 +6,7 @@ var players = [];
 var playersIsReady = [];
 var player;
 var target = false;
+var emptyCells = [];
 
 function onYouTubeIframeAPIReady() {
   youtubeAPIReady = true;
@@ -19,6 +20,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages, deferred_allGalleries).done(function() {
   var backgroundInterval = null;
   runCarroussel();
+  alignGalleriesIcons();
 
   if(youtubeAPIReady) {
     manageSlideshows();
@@ -116,8 +118,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     
     if(isMobile){
       $("#js_globalContainer").toggleClass("globalContainer--noScroll");
-      $("#js_globalContent").toggleClass("maskContent");
-      $("#js_socialsContainer").toggleClass("maskContent");
+      $(".maskContent").delay(750).fadeToggle();
     }
   }
 
@@ -131,7 +132,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     if(isMobile){
       $("#js_globalContainer").removeClass("globalContainer--noScroll");
       $("#js_globalContent").removeClass("maskContent");
-      $("#js_socialsContainer").removeClass("maskContent");
+      $(".maskContent").delay(750).fadeOut();
     }
   }
 
@@ -139,9 +140,16 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $(".menuContainer").removeClass("menuContainer--opened");
     $("#js_globalContent").removeClass("globalContent--reduced");
     $("#js_globalContainer").removeClass("globalContainer--noScroll");
-    $("#js_globalContent").removeClass("maskContent");
-    $("#js_socialsContainer").removeClass("maskContent");
-    
+    $(".maskContent").delay(750).fadeOut();
+  }
+
+  function alignGalleriesIcons(){
+    for (i = 0; i < $("#content_galleries").find('.galleriesContainer').length; i++) {
+      emptyCells.push($('<div>', {
+        class: 'galleriesContainer galleriesContainer--empty'
+      }));
+    }
+    $("#content_galleries").append(emptyCells);
   }
 
   $("#js_title").click(function(){

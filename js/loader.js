@@ -54,7 +54,7 @@ $.ajax({
       if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
         backgroundImages[numberOfBackgrounds] = new Image();
         if(prod){
-          backgroundImages[numberOfBackgrounds].src = folder+'/'+val;
+          backgroundImages[numberOfBackgrounds].src = './'+folder+'/'+val;
         }
         else{
           backgroundImages[numberOfBackgrounds].src = './'+val;

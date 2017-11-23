@@ -9,12 +9,15 @@ var languages = {
 		menu_collaboration: "Collaboration",
 		menu_aboutme: "About me",
 		// Galleries
-		galleries_portrait: "Portrait",
-		galleries_weddingAndLoveStory: "Wedding and Love story",
-		galleries_family: "Family",
-		galleries_littleRiviera: "Little Riviera",
-		galleries_artProject: "Art project",
+		galleries_wedding: "Weddings",
+		galleries_loveStory: "Love Story",
+		galleries_frenchRiviera: "French Riviera",
+		galleries_familyAndKids: "Families and kids",
 		galleries_blackAndWhite: "Black and white",
+		galleries_portrait: "Portrait",
+		galleries_lavenderMagic: "Lavender Magic",
+		galleries_artProjects: "Art Projects",
+		galleries_events: "Events",
 		// Contact
 		contact_global_title: "Contact me",
 		contact_global_text: "Contacting me is very simple: you can use any convenient method (by phone, email, FB, VK, Viber, etc).</br></br>All contact information is given below.</br></br>Also you can contact me by sending a message using the form below.",
@@ -47,12 +50,15 @@ var languages = {
 		menu_collaboration: "Collaboration",
 		menu_aboutme: "A propos de moi",
 		// Galleries
-		galleries_portrait: "Portrait",
-		galleries_weddingAndLoveStory: "Mariage et histoire d'amour",
-		galleries_family: "Famille",
-		galleries_littleRiviera: "La Riviera",
-		galleries_artProject: "Projet d'art",
+		galleries_wedding: "Mariage",
+		galleries_loveStory: "Histoire d'Amour",
+		galleries_frenchRiviera: "Côte d'Azur",
+		galleries_familyAndKids: "Famille et enfants",
 		galleries_blackAndWhite: "Noir et blanc",
+		galleries_portrait: "Portrait",
+		galleries_lavenderMagic: "Magie de la lavande",
+		galleries_artProjects: "Projets artistiques",
+		galleries_events: "Reportages",
 		// Contact
 		contact_global_title: "Me contacter",
 		contact_global_text: "Pour me contacter c'est très simple: vous pouvez utiliser n'importe quelle méthode pratique (par téléphone, email, FB, VK, Viber, etc).</br></br>Toutes les informations de contact sont données ci-dessous.</br></br>Aussi, vous pouvez me contacter en envoyant un message en utilisant le formulaire ci-dessous.",
@@ -87,12 +93,15 @@ var languages = {
 		menu_collaboration: "Сотрудничество",
 		menu_aboutme: "Обо мне",
 		// Galleries
+		galleries_wedding: "Свадьбы",
+		galleries_loveStory: "Love Story",
+		galleries_frenchRiviera: "Лазурный берег",
+		galleries_familyAndKids: "Семейная и детская съемка",
+		galleries_blackAndWhite: "Ч/Б",
 		galleries_portrait: "Портрет",
-		galleries_weddingAndLoveStory: "Свадебные и романтические фотосессии",
-		galleries_family: "Семья",
-		galleries_littleRiviera: "Лазурный берег",
-		galleries_artProject: "Творческие проекты",
-		galleries_blackAndWhite: "ЧБ",
+		galleries_lavenderMagic: "Магия лаванды",
+		galleries_artProjects: "Творческие проектыs",
+		galleries_events: "Pепортаж",
 		// Contact
 		contact_global_title: "Связаться со мной",
 		contact_global_text: "Связаться со мной очень просто: Вы можете использовать любой удобный способ (по телефону, email, FB, VK, Viber и другие).</br></br>Вся контактная информация приведена ниже.</br></br>Также Вы можете связаться со мной, отправив сообщение с помощью формы, приведенной внизу.",
@@ -141,12 +150,15 @@ var viewModel = function() {
   this.menu_collaboration = ko.observable(languages[userLanguage].menu_collaboration);
   this.menu_aboutme = ko.observable(languages[userLanguage].menu_aboutme);
   // Galleries
-  this.galleries_portrait = ko.observable(languages[userLanguage].galleries_portrait);
-  this.galleries_weddingAndLoveStory = ko.observable(languages[userLanguage].galleries_weddingAndLoveStory);
-  this.galleries_family = ko.observable(languages[userLanguage].galleries_family);
-  this.galleries_littleRiviera = ko.observable(languages[userLanguage].galleries_littleRiviera);
-  this.galleries_artProject = ko.observable(languages[userLanguage].galleries_artProject);
+  this.galleries_wedding = ko.observable(languages[userLanguage].galleries_wedding);
+  this.galleries_loveStory = ko.observable(languages[userLanguage].galleries_loveStory);
+  this.galleries_frenchRiviera = ko.observable(languages[userLanguage].galleries_frenchRiviera);
+  this.galleries_familyAndKids = ko.observable(languages[userLanguage].galleries_familyAndKids);
   this.galleries_blackAndWhite = ko.observable(languages[userLanguage].galleries_blackAndWhite);
+  this.galleries_portrait = ko.observable(languages[userLanguage].galleries_portrait);
+  this.galleries_lavenderMagic = ko.observable(languages[userLanguage].galleries_lavenderMagic);
+  this.galleries_artProjects = ko.observable(languages[userLanguage].galleries_artProjects);
+  this.galleries_events = ko.observable(languages[userLanguage].galleries_events);
   // Contact
   this.contact_global_title = ko.observable(languages[userLanguage].contact_global_title);
   this.contact_global_text = ko.observable(languages[userLanguage].contact_global_text);

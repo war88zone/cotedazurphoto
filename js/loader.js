@@ -1,4 +1,3 @@
-var galleryCategories = ["portrait", "weddingAndLoveStory", "family", "littleRiviera", "artProject", "blackAndWhite"];
 var numberOfBackgrounds = 0;
 var backgroundImages = [];
 
@@ -54,8 +53,12 @@ $.ajax({
     $(data).find("a").attr("href", function (i, val) {
       if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
         backgroundImages[numberOfBackgrounds] = new Image();
-        backgroundImages[numberOfBackgrounds].src = folder+'/'+val; // PROD
-        //backgroundImages[numberOfBackgrounds].src = './'+val; // LOCAL
+        if(prod){
+          backgroundImages[numberOfBackgrounds].src = folder+'/'+val;
+        }
+        else{
+          backgroundImages[numberOfBackgrounds].src = './'+val;
+        }
         numberOfBackgrounds++;
       }
     });
@@ -68,49 +71,3 @@ $.ajax({
     console.log(error);
   }
 });
-
-// Load galleries's pages
-let deferred_allGalleries = $.Deferred();
-let deferredArray = [];
-for(let i=0; i<galleryCategories.length; i++){
-  let deferred = $.Deferred();
-  deferredArray.push(deferred);
-  $("#js_gallery_"+galleryCategories[i]).load("view/gallery_"+galleryCategories[i]+".html", (function (x) {
-    loadImages(galleryCategories[x], deferred);
-  })(i));
-};
-
-$.when.apply($, deferredArray).done(function() {
-  deferred_allGalleries.resolve();
-});
-
-// Load images
-function loadImages(path, deferred){
-  let folder = "../image/"+path;
-  let i = 0;
-
-  $.ajax({
-    url : folder,
-    success: function(data) {
-      $(data).find("a").attr("href", function (i, val) {
-          if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
-            $("#content_gallery_"+path).append('<img alt="" src="'+folder+'/'+val+'" class="galleryImage"/>'); // PROD
-            //$("#content_gallery_"+path).append('<img alt="" src="./'+val+'" class="galleryImage"/>'); // LOCAL
-          } 
-      });
-
-      let apiUnitegallery = $("#content_gallery_"+path).unitegallery({
-        gallery_theme:"tiles"
-      });
-
-      $("#js_gallery_"+path).addClass("content_gallery_hidden");
-
-      console.log(path + " loaded");
-      deferred.resolve();
-    },
-    error: function(error) {
-      console.log("error during loading"+ path);
-      console.log(error);
-    }
-  });
-}

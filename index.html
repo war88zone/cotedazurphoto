@@ -26,12 +26,10 @@
 				<div id="js_backToGalleries" class="backToGalleriesContainer">
 					<div class="backToGalleriesContent"></div>
 				</div>
-				<div id="js_gallery_portrait" class="gallery_background"></div>
-				<div id="js_gallery_weddingAndLoveStory" class="gallery_background"></div>
-				<div id="js_gallery_family" class="gallery_background"></div>
-				<div id="js_gallery_littleRiviera" class="gallery_background"></div>
-				<div id="js_gallery_artProject" class="gallery_background"></div>
-				<div id="js_gallery_blackAndWhite" class="gallery_background"></div>
+				<!-- ko foreach: galleryCategories -->
+					<div data-bind="attr: { id: 'js_gallery_' + name }" class="gallery_background"></div>
+				<!-- /ko -->
+				<div id="js_gallery_loveStory" class="gallery_background"></div>
 				<!-- SLIDESHOW -->
 				<div id="js_slideshow"><div id="player"></div></div>
 				<!-- CONTACT -->
@@ -53,8 +51,10 @@
 		<script type='text/javascript' src='lib/knockout.js'></script>
 		<script type='text/javascript' src="js/emailSender.js"></script>
 		<script type='text/javascript' src="js/languages.js"></script>
+		<script type='text/javascript' src="js/galleries.js"></script>
 		<script type='text/javascript' src="js/loader.js"></script>
 		<script src="https://www.youtube.com/iframe_api"></script>
+		<script type='text/javascript' src="js/youtube.js"></script>
 		<script type='text/javascript' src="js/controller.js"></script>
 	</body>
 </html>

@@ -1,110 +1,30 @@
 var lastBackgroundIndex = 0;
 var isMobile = false;
 var currentGalleryId = "";
-var youtubeAPIReady = false;
 var players = [];
 var playersIsReady = [];
 var player;
 var target = false;
 var emptyCells = [];
 
-function onYouTubeIframeAPIReady() {
-  youtubeAPIReady = true;
-}
-
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  isMobile = true;
 }
 
 // Events
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages, deferred_allGalleries).done(function() {
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages).done(function() {
+  
+  // Apply bindings
+  ko.applyBindings(globalViewModel);
+
+  // Run background transitions
   var backgroundInterval = null;
   runCarroussel();
-  alignGalleriesIcons();
 
-  if(youtubeAPIReady) {
-    manageSlideshows();
-  }
+  // Load galleries
+  loadGalleries();
 
-  ko.applyBindings(new viewModel());
-
-  $(".menuContainer").on("touchstart touchmove click", function(event){
-    target = true;
-    setTimeout(()=>{
-      target = false;
-    }, 100);
-  });
-
-
-  $("#js_globalContent").bind('touchstart touchmove click', function(event){
-    if(!target && $(".menuContainer").hasClass("menuContainer--opened")){
-      return false;
-    }
-  });
-
-
-  $("#js_openCloseButton").click(function(){
-    openMenu();
-  });
-
-  function runCarroussel () {
-    if(!isMobile){
-      backgroundInterval = setInterval(function(){
-        let backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
-        while (backgroundIndex == lastBackgroundIndex) {
-          backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
-        }
-        // Number of background -> index
-        backgroundIndex--;
-        lastBackgroundIndex = backgroundIndex;
-
-        $("body").css("background-image", "url(" + backgroundImages[backgroundIndex].src + ")");
-      }, 5000);
-    }
-  }
-
-  function manageSlideshows () {
-    var self = this;
-    $(".slideshowContent").each(function(){
-      var identifier = this.firstElementChild.id;
-      player = new YT.Player(identifier, {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
-      });
-      self.players.push(player);
-    });
-  }
-
-
-  function onPlayerReady(event) {
-    currentIndex = event.target.a.id.split("slideshow")[1];
-    console.log(currentIndex + " is ready");
-  }
-
-  function onPlayerStateChange(event) {
-    currentIndex = event.target.a.id.split("slideshow")[1];
-    if(currentIndex && players.length ==  $(".slideshowContent").length){
-      console.log(players[currentIndex].getPlayerState());
-      if(players[currentIndex].getPlayerState() == 1) {
-        for (let i=0; i<players.length; i++){
-          if(players[i] != players[currentIndex]){
-            players[i].pauseVideo();
-          }
-        }
-      }
-    }
-  }
-
-  function stopSlideshowPlaying(){
-    for (let i=0; i<players.length; i++){
-      if(players[i].getPlayerState() == 1){
-        players[i].pauseVideo();
-      }
-    }
-  }
-
+  // functions
   function openMenu(){
     clearInterval(backgroundInterval);
 
@@ -143,14 +63,39 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $(".maskContent").delay(750).fadeOut();
   }
 
-  function alignGalleriesIcons(){
-    for (i = 0; i < $("#content_galleries").find('.galleriesContainer').length; i++) {
-      emptyCells.push($('<div>', {
-        class: 'galleriesContainer galleriesContainer--empty'
-      }));
+  function runCarroussel () {
+    if(!isMobile){
+      backgroundInterval = setInterval(function(){
+        let backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
+        while (backgroundIndex == lastBackgroundIndex) {
+          backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
+        }
+        // Number of background -> index
+        backgroundIndex--;
+        lastBackgroundIndex = backgroundIndex;
+
+        $("body").css("background-image", "url(" + backgroundImages[backgroundIndex].src + ")");
+      }, 5000);
     }
-    $("#content_galleries").append(emptyCells);
   }
+
+  // Manage touch events
+  $(".menuContainer").on("touchstart touchmove click", function(event){
+    target = true;
+    setTimeout(()=>{
+      target = false;
+    }, 100);
+  });
+
+  $("#js_globalContent").bind('touchstart touchmove click', function(event){
+    if(!target && $(".menuContainer").hasClass("menuContainer--opened")){
+      return false;
+    }
+  });
+
+  $("#js_openCloseButton").click(function(){
+    openMenu();
+  });
 
   $("#js_title").click(function(){
     openMenu();

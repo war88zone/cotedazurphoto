@@ -1,3 +1,4 @@
+// Regex to validate the Email
 function validateEmail(email, id) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if(re.test($(email).val())){
@@ -9,6 +10,7 @@ function validateEmail(email, id) {
   }
 }
 
+// Show feedback message
 function displayFeedbackMessage(value, id){
   if($(value).val() == ""){
     $(id).fadeIn();
@@ -19,6 +21,7 @@ function displayFeedbackMessage(value, id){
   }
 }
 
+// Hide feedback message
 function hideFeedbackMessage(){
   $("#js_errorName_empty").fadeOut();
   $("#js_errorEmail_empty").fadeOut();
@@ -27,7 +30,7 @@ function hideFeedbackMessage(){
   $("#js_successMessage_sent").fadeOut();
 }
 
-
+// Click on send email button management
 function clickOnSendEmail () {
   if(!$(".buttonSend").hasClass("buttonSend--disabled")){
     hideFeedbackMessage();

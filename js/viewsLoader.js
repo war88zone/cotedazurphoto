@@ -45,29 +45,31 @@ $("#js_aboutMe").load("view/aboutMe.html", function() {
 });
 
 var deferred_backgroundImages = $.Deferred();
-var folder = "../image/backgrounds";
+if(!isMobile){
+  var folder = "../image/backgrounds";
 
-$.ajax({
-  url : folder,
-  success: function(data) {
-    $(data).find("a").attr("href", function (i, val) {
-      if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
-        backgroundImages[numberOfBackgrounds] = new Image();
-        if(prod){
-          backgroundImages[numberOfBackgrounds].src = './'+folder+'/'+val;
+  $.ajax({
+    url : folder,
+    success: function(data) {
+      $(data).find("a").attr("href", function (i, val) {
+        val = val.split("/");
+        val = val[val.length-1];
+        if(val.match(/\.(jpe?g|JPG|png|gif)$/)) { 
+          backgroundImages[numberOfBackgrounds] = new Image();
+          backgroundImages[numberOfBackgrounds].src = folder+'/'+val;
+          numberOfBackgrounds++;
         }
-        else{
-          backgroundImages[numberOfBackgrounds].src = './'+val;
-        }
-        numberOfBackgrounds++;
-      }
-    });
+      });
 
-    console.log(numberOfBackgrounds+" background(s) loaded");
-    deferred_backgroundImages.resolve();
-  },
-  error: function(error) {    
-    console.log("error during loading backgrounds");
-    console.log(error);
-  }
-});
+      console.log(numberOfBackgrounds+" background(s) loaded");
+      deferred_backgroundImages.resolve();
+    },
+    error: function(error) {    
+      console.log("error during loading backgrounds");
+      console.log(error);
+    }
+  });
+}
+else{
+  deferred_backgroundImages.resolve();
+}

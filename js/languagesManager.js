@@ -1,3 +1,4 @@
+var isMobile = false;
 var languages = {
 	"en": {
 		// Title of the website
@@ -127,6 +128,11 @@ var languages = {
 		aboutMe_skill_text: "- Семейная фотография</br></br>- Портретная фотография</br></br>- Романтическая съемка (Love-story)</br></br>- Съемка детей</br></br>- Съемка беременных</br></br>- Студийная съемка</br></br>- Художественная и техническая ретушь фотографий</br></br>- Знание языков - французский, английский, русский, украинский"
 	}
 };
+
+// Check if we are on mobile device
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+ isMobile = true;
+}
 
 // Check language from useragent
 var userLanguage = navigator.language;

@@ -1,16 +1,10 @@
 var lastBackgroundIndex = 0;
-var isMobile = false;
 var currentGalleryId = "";
 var players = [];
 var playersIsReady = [];
 var player;
 var target = false;
 var emptyCells = [];
-
-// Check if we are on mobile device
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
- isMobile = true;
-}
 
 // When HTML are loaded
 $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages).done(function() {
@@ -26,7 +20,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   loadGalleries();
 
   // Open menu management
-  function openMenu(){
+  function openMenu(fromTitle=false){
     clearInterval(backgroundInterval);
 
     $("#js_openCloseButton").removeClass("openCloseButton--pulsed");
@@ -34,12 +28,15 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $("#js_title").fadeOut("slow", function(){
       $("#js_globalContent").fadeIn("slow");
     });
-    $(".menuContainer").toggleClass("menuContainer--opened");
-    $("#js_globalContent").toggleClass("globalContent--reduced");
+
+    if(!fromTitle || (fromTitle && !isMobile)){
+      $(".menuContainer").toggleClass("menuContainer--opened");
+      $("#js_globalContent").toggleClass("globalContent--reduced");
+    }
     
-    if(isMobile){
+    if(!fromTitle && isMobile){
       $("#js_globalContainer").toggleClass("globalContainer--noScroll");
-      $(".maskContent").delay(750).fadeToggle();
+      $(".maskContent").fadeToggle();
     }
   }
 
@@ -157,7 +154,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
 
   // Open menu
   $("#js_title").click(function(){
-    openMenu();
+    openMenu(true);
   });
 
   // Send email
@@ -169,5 +166,22 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   $("#js_iconMenu").click(function(){
     backToTitle();
     runCarroussel();
+  });
+
+  // Hack the lib to get key events to nav
+  $(document).keydown(function(event){               
+    if(currentGalleryId !== ""){
+      let currentGalleryIndex = $("#js_"+currentGalleryId).attr('class').split("galleryIndex_")[1];
+      let keyCode = (event.charCode) ? event.charCode :((event.keyCode) ? event.keyCode :((event.which) ? event.which : 0));  
+
+      switch(keyCode){
+        case 39: //right key
+          galleryCategories[currentGalleryIndex].nextItem();
+          break;
+        case 37: //left key
+          galleryCategories[currentGalleryIndex].prevItem();
+          break;
+      }
+    }  
   });
 });

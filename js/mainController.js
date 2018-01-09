@@ -125,6 +125,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $("#js_"+this.id).removeClass("content_gallery_hidden");
     currentGalleryId = this.id;
     $("#js_backToGalleries").show();
+    $('html, body').animate( { scrollTop: 0 }, 500 );
   });
 
   // Click on back to galleries

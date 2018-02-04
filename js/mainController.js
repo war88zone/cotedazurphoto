@@ -26,7 +26,8 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $("#js_openCloseButton").removeClass("openCloseButton--pulsed");
 
     $("#js_title").fadeOut("slow", function(){
-      $("#js_globalContent").fadeIn("slow");
+      $("#js_globalContent").show();
+      $("#content_galleries").css("display", "flex").hide().fadeIn("slow");
     });
 
     if(!fromTitle || (fromTitle && !isMobile)){
@@ -109,9 +110,10 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $(".category_icon").removeClass("icon--active");
     $(this).find(".category_icon").addClass("icon--active");
     // Update the content view
-    $(".content").removeClass("content--active");
-    $("#content_"+this.id).addClass("content--active");
-
+    $(".content").fadeOut();
+    $('html, body').animate( { scrollTop: 0 }, 500 );
+    $("#content_"+this.id).css("display", "flex").hide().delay(500).fadeIn("slow");
+    
     if(isMobile){
       closeMenu();
     }
@@ -120,7 +122,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   // Click on a gallery
   $(".galleriesContainer").click(function(){
     // Hide the galleries page
-    $(".content").removeClass("content--active");
+    $(".content").fadeOut();
     // Display the selected gallery page
     $("#js_"+this.id).removeClass("content_gallery_hidden");
     currentGalleryId = this.id;
@@ -135,7 +137,7 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     currentGalleryId = "";
     $("#js_backToGalleries").hide();
     // Display the galleries page
-    $("#content_galleries").addClass("content--active");
+    $("#content_galleries").css("display", "flex").hide().delay(500).fadeIn("slow");
   });
 
   // We need to keep the hover by JS because the icon--active class isn't appliable on the element hovered

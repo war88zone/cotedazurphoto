@@ -48,6 +48,8 @@ var deferred_backgroundImages = $.Deferred();
 if(!isMobile){
   var folder = "../image/backgrounds";
 
+  console.log(window.localStorage);
+
   $.ajax({
     url : folder,
     success: function(data) {

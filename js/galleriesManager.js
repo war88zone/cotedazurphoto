@@ -1,6 +1,6 @@
 var globalViewModel = new viewModel();
 var galleryCategories = [
-                        { "name": "wedding",        "observable": globalViewModel.galleries_wedding(), "apiUniteGallery": null},
+                        /*{ "name": "wedding",        "observable": globalViewModel.galleries_wedding(), "apiUniteGallery": null},*/
                         { "name": "loveStory",      "observable": globalViewModel.galleries_loveStory(), "apiUniteGallery": null},
                         { "name": "frenchRiviera",  "observable": globalViewModel.galleries_frenchRiviera(), "apiUniteGallery": null},
                         { "name": "familyAndKids",  "observable": globalViewModel.galleries_familyAndKids(), "apiUniteGallery": null},

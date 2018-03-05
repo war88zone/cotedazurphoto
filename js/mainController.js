@@ -96,8 +96,13 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
 
   // Click on menu category
   $(".category").click(function(){
+    if(this.id === "slideshow"){
+      loadYoutubeVideos();
+    }
+      
     // Stop videos playing
     stopSlideshowPlaying();
+
     // Hide gallery pages
     if(currentGalleryId != ""){
       $("#js_"+currentGalleryId).addClass("content_gallery_hidden");

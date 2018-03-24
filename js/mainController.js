@@ -57,15 +57,15 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $("#js_openCloseButton").removeClass("openCloseButton--pulsed");    
 
     // Display the menu
-    $(".menuContainer").toggleClass("menuContainer--opened");
+    $(".menuContainer").addClass("menuContainer--opened");
 
     // Display mask on mobile
     if(isMobile){
-      $(".maskContent").toggleClass("maskContent--visible");
-      $("html").toggleClass("scrollLocked");
+      $(".maskContent").addClass("maskContent--visible");
+      $("html").addClass("scrollLocked");
     }
     else{
-      $("#js_globalContent").toggleClass("globalContent--reduced");
+      $("#js_globalContent").addClass("globalContent--reduced");
     }
   }
 
@@ -75,8 +75,8 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     $(".menuContainer").removeClass("menuContainer--opened");
 
     if(isMobile){
-      $(".maskContent").toggleClass("maskContent--visible");
-      $("html").toggleClass("scrollLocked");
+      $(".maskContent").removeClass("maskContent--visible");
+      $("html").removeClass("scrollLocked");
     }
     else{
       $("#js_globalContent").removeClass("globalContent--reduced");
@@ -86,17 +86,15 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   // Back to the title page
   function backToTitle(){
     $("#js_title").fadeIn("slow");
-    $("#js_globalContent").css("opacity", 0);
+    $("#js_globalContent").addClass("globalContent--hidden");
+    titleIsVisible = true;
 
     // Hide the menu
     $(".menuContainer").removeClass("menuContainer--opened");
 
-    // Hide the content
-    $("#js_globalContent").removeClass("globalContent--hidden");
-
     if(isMobile){
-      $(".maskContent").toggleClass("maskContent--visible");
-      $("html").toggleClass("scrollLocked");
+      $(".maskContent").removeClass("maskContent--visible");
+      $("html").removeClass("scrollLocked");
     }
     else{
       $("#js_globalContent").removeClass("globalContent--reduced");

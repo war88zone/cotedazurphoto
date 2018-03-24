@@ -54,7 +54,7 @@ if(!isMobile){
       $(data).find("a").attr("href", function (i, val) {
         val = val.split("/");
         val = val[val.length-1];
-        if(val.match(/\.(jpe?g|JPG|png|gif)$/) && val.indexOf("Mobile") === -1) { 
+        if(val.match(/\.(jpe?g|JPG|png|gif)$/) && val.indexOf("mobile") === -1) { 
           backgroundImages[numberOfBackgrounds] = new Image();
           backgroundImages[numberOfBackgrounds].src = folder+'/'+val;
           numberOfBackgrounds++;

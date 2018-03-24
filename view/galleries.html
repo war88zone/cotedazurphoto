@@ -1,4 +1,8 @@
 <div id="content_galleries" class="content content_galleries content--active">
+	<div class="galleries_titleContainer">
+		<div class="content_title" data-bind="html: galleries_global_title"></div>
+		<div class="content_separator"></div>
+	</div>
 	<!-- ko foreach: galleryCategories -->
 		<div data-bind="attr: { id: 'gallery_' + name }" class="galleriesContainer">
 			<div class="galleriesContent">

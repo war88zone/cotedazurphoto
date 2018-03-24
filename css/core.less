@@ -1,3 +1,11 @@
+.scrollLocked {
+	overflow: hidden;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	background-color: #5e5d5d;
@@ -37,11 +45,6 @@ input, textarea {
 	font-family: 'Open Sans', sans-serif;
 	color: black;
 }
-
-.globalContainer--noScroll {
-	overflow: hidden;
-}
-
 
 .title {
 	position: absolute;
@@ -103,9 +106,13 @@ input, textarea {
 	height: auto;
 	padding: 5%;
 	padding-top: 100px;
-	box-sizing: border-box;
 	transition: width 0.75s ease-in-out;
-	display: none;
+
+	&--hidden {
+		position: absolute;
+		top: -99999px;
+		left: -99999px;
+	}
 }
 
 .globalContent.globalContent--reduced {
@@ -130,7 +137,6 @@ input, textarea {
 .content {
 	width: 100%;
 	height: auto;
-	box-sizing: border-box;
 	background-color: rgba(0, 0, 0, 0.5);
 	display: none;
 	flex-direction: row;
@@ -156,10 +162,21 @@ input, textarea {
   width: 100%;
   height: 2px;
   background-color: white;
-  box-sizing: border-box;
 }
 
 @media screen and (max-width: 800px) {
+
+	body {
+		margin: 0;
+		background-color: #5e5d5d;
+		background: url("../image/backgrounds/backgroundMobile.jpg");
+		background-size: cover; 
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center; 
+		overflow-x: hidden;
+	}
+
 	.globalContent.globalContent--reduced {
 		width: 100%;
 	}

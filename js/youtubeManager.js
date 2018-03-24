@@ -8,6 +8,9 @@ var youtubeVideos = [
                       {"url": "https://www.youtube.com/embed/JrszalgcORI?enablejsapi=1", "state": 0}
                     ];
 var videosLoaded = false;
+var players = [];
+var playersIsReady = [];
+var player;
 
 // When YouTube APi is ready
 function onYouTubeIframeAPIReady() {
@@ -17,7 +20,6 @@ function onYouTubeIframeAPIReady() {
 function loadYoutubeVideos() {
   if(youtubeAPIReady && !videosLoaded) {
     let i = 0;
-    var self = this;
 
     for(let i=0; i<youtubeVideos.length; i++){
       let identifier = "slideshow"+i;
@@ -34,7 +36,7 @@ function loadYoutubeVideos() {
           'onStateChange': onPlayerStateChange
         }
       });
-      self.players.push(player);
+      players.push(player);
     }
   }
 }

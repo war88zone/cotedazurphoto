@@ -40,8 +40,6 @@ function loadGalleries () {
         });
 
         $("#js_gallery_"+path).addClass("content_gallery_hidden").addClass("galleryIndex_"+currentCategory);
-
-        console.log(path + " loaded");
       },
       error: function(error) {
         console.log("error during loading"+ path);

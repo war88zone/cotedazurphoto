@@ -1,8 +1,6 @@
 var isMobile = false;
 var languages = {
 	"en": {
-		// Title of the website
-		website_title: "Tetiana Kushchynska</br>Photographer",
 		// Menu
 		menu_galleries: "Galleries",
 		menu_slideshow: "Slideshow", 
@@ -10,6 +8,7 @@ var languages = {
 		menu_collaboration: "Collaboration",
 		menu_aboutme: "About me",
 		// Galleries
+		galleries_global_title: "Galleries",
 		galleries_wedding: "Weddings",
 		galleries_loveStory: "Love Story",
 		galleries_frenchRiviera: "French Riviera",
@@ -42,8 +41,6 @@ var languages = {
 		aboutMe_skill_text: "- Family photography</br></br>- Portrait photography</br></br>- Romantic photography (Love-story)</br></br>- Shooting children</br></br>- Shooting pregnant</br></br>- Studio shooting</br></br>- Artistic and technical retouching of photo</br></br>- Languages - French, English, Russian, Ukrainian"
 	},
 	"fr": {
-		// Title of the website
-		website_title: "Photographe</br>Tetiana Kushchynska",
 		// Menu
 		menu_galleries: "Galleries",
 		menu_slideshow: "Montages", 
@@ -51,6 +48,7 @@ var languages = {
 		menu_collaboration: "Collaboration",
 		menu_aboutme: "A propos de moi",
 		// Galleries
+		galleries_global_title: "Galeries",
 		galleries_wedding: "Mariage",
 		galleries_loveStory: "Histoire d'Amour",
 		galleries_frenchRiviera: "Côte d'Azur",
@@ -85,8 +83,6 @@ var languages = {
 		aboutMe_skill_text: "- Photographie familiale</br></br>- Photographie de portrait</br></br>- Photographie romantique (Love-story)</br></br>- Photographie de enfants</br></br>- Photographie de grossesse</br></br>- Photographie de studio</br></br>- Retouche artistique et technique de photo</br></br>- Langues - Français, Anglais, Russe, Ukrainien"
 	},
 	"ru": {
-		// Title of the website
-		website_title: "Фотограф</br>Татьяна Кущинская",
 		// Menu
 		menu_galleries: "Галерии",
 		menu_slideshow: "Слайд-шоу", 
@@ -94,6 +90,7 @@ var languages = {
 		menu_collaboration: "Сотрудничество",
 		menu_aboutme: "Обо мне",
 		// Galleries
+		galleries_global_title: "Галереи",
 		galleries_wedding: "Свадьбы",
 		galleries_loveStory: "Love Story",
 		galleries_frenchRiviera: "Лазурный берег",
@@ -147,8 +144,6 @@ else{
 }
 
 var viewModel = function() {
-  // Title of the website
-  this.website_title = ko.observable(languages[userLanguage].website_title);
   // Menu
   this.menu_galleries = ko.observable(languages[userLanguage].menu_galleries);
   this.menu_slideshow = ko.observable(languages[userLanguage].menu_slideshow);
@@ -156,6 +151,7 @@ var viewModel = function() {
   this.menu_collaboration = ko.observable(languages[userLanguage].menu_collaboration);
   this.menu_aboutme = ko.observable(languages[userLanguage].menu_aboutme);
   // Galleries
+  this.galleries_global_title = ko.observable(languages[userLanguage].galleries_global_title);
   this.galleries_wedding = ko.observable(languages[userLanguage].galleries_wedding);
   this.galleries_loveStory = ko.observable(languages[userLanguage].galleries_loveStory);
   this.galleries_frenchRiviera = ko.observable(languages[userLanguage].galleries_frenchRiviera);

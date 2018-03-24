@@ -1,14 +1,11 @@
-var lastBackgroundIndex = 0;
-var currentGalleryId = "";
-var players = [];
-var playersIsReady = [];
-var player;
-var target = false;
-var emptyCells = [];
+// When document is loaded
+$(document).ready(function() {
+  var lastBackgroundIndex = 0;
+  var currentGalleryId = "";
+  var target = false;
+  var emptyCells = [];
+  var titleIsVisible = true;
 
-// When HTML are loaded
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages).done(function() {
-  
   // Apply bindings
   ko.applyBindings(globalViewModel);
 
@@ -20,48 +17,76 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
   loadGalleries();
 
   // Open menu management
-  function openMenu(fromTitle=false){
-    clearInterval(backgroundInterval);
-
-    $("#js_openCloseButton").removeClass("openCloseButton--pulsed");
-
-    $("#js_title").fadeOut("slow", function(){
-      $("#js_globalContent").fadeIn("slow");
-    });
-
-    if(!fromTitle || (fromTitle && !isMobile)){
-      $(".menuContainer").toggleClass("menuContainer--opened");
-      $("#js_globalContent").toggleClass("globalContent--reduced");
+  function openMenu() {
+    if(!isMobile) {
+      clearInterval(backgroundInterval);
     }
-    
-    if(!fromTitle && isMobile){
-      $("#js_globalContainer").toggleClass("globalContainer--noScroll");
-      $(".maskContent").fadeToggle();
+
+    if(titleIsVisible){
+      $("#js_title").fadeOut("slow", function(){
+        // Display the content
+        $("#js_globalContent").removeClass("globalContent--hidden");
+      });
     }
-  }
+    else{
+      // Display the content
+      $("#js_globalContent").removeClass("globalContent--hidden");
+    }
 
-  // Back to the title page
-  function backToTitle(){
-    $("#js_globalContent").fadeOut("slow", function(){
-      $("#js_title").fadeIn("slow");
-    });
-    $(".menuContainer").removeClass("menuContainer--opened");
-    $("#js_globalContent").removeClass("globalContent--reduced");
+    // Remove pulse effect on the menu button
+    $("#js_openCloseButton").removeClass("openCloseButton--pulsed");    
 
+    // Display the menu
+    $(".menuContainer").toggleClass("menuContainer--opened");
+
+    // Display mask on mobile
     if(isMobile){
-      $("#js_globalContainer").removeClass("globalContainer--noScroll");
-      $("#js_globalContent").removeClass("maskContent");
-      $(".maskContent").delay(750).fadeOut();
+      $(".maskContent").toggleClass("maskContent--visible");
+      $("html").toggleClass("scrollLocked");
+    }
+    else{
+      $("#js_globalContent").toggleClass("globalContent--reduced");
     }
   }
 
   // Close menu
   function closeMenu(){
+    // Hide the menu
     $(".menuContainer").removeClass("menuContainer--opened");
-    $("#js_globalContent").removeClass("globalContent--reduced");
-    $("#js_globalContainer").removeClass("globalContainer--noScroll");
-    $(".maskContent").delay(750).fadeOut();
+
+    if(isMobile){
+      $(".maskContent").toggleClass("maskContent--visible");
+      $("html").toggleClass("scrollLocked");
+    }
+    else{
+      $("#js_globalContent").removeClass("globalContent--reduced");
+    }
   }
+
+  // Back to the title page
+  function backToTitle(){
+    $("#js_title").fadeIn("slow");
+    $("#js_globalContent").css("opacity", 0);
+
+    // Hide the menu
+    $(".menuContainer").removeClass("menuContainer--opened");
+
+    // Hide the content
+    $("#js_globalContent").removeClass("globalContent--hidden");
+
+    if(isMobile){
+      $(".maskContent").toggleClass("maskContent--visible");
+      $("html").toggleClass("scrollLocked");
+    }
+    else{
+      $("#js_globalContent").removeClass("globalContent--reduced");
+    }
+  }
+
+  // Avoid click on content behind mask
+  $(".global_mask").click((event)=>{
+    return false;
+  });
 
   // Background rotation
   function runCarroussel () {
@@ -79,20 +104,6 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
       }, 5000);
     }
   }
-
-  // Manage touch events
-  $(".menuContainer").on("touchstart touchmove click", function(event){
-    target = true;
-    setTimeout(()=>{
-      target = false;
-    }, 100);
-  });
-
-  $("#js_globalContent").bind('touchstart touchmove click', function(event){
-    if(!target && $(".menuContainer").hasClass("menuContainer--opened")){
-      return false;
-    }
-  });
 
   // Click on menu category
   $(".category").click(function(){
@@ -158,9 +169,15 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     openMenu();
   });
 
-  // Open menu
+  // Click on title
   $("#js_title").click(function(){
-    openMenu(true);
+    $("#js_title").fadeOut("slow", function(){
+      $("#js_globalContent").removeClass("globalContent--hidden");
+      titleIsVisible = false;
+    });
+
+    // Remove pulse effect on the menu button
+    $("#js_openCloseButton").removeClass("openCloseButton--pulsed"); 
   });
 
   // Send email

@@ -1,11 +1,16 @@
 .content_galleries {
-    padding: 5px 10px;
     justify-content: center;
 }
 
+.galleries_titleContainer {
+	width: 100%;
+  	padding-left: 40px;
+}
+
+
 .galleriesContainer {
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 	padding: 30px;
 	transition: all 0.3s ease-in-out;
 	position: relative;
@@ -30,6 +35,8 @@
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
+	padding: 20px;
+    word-break: break-word;
 }
 
 .galleries_title {
@@ -109,6 +116,10 @@
 }
 
 @media screen and (max-width: 800px) {
+	.galleries_titleContainer {
+  		padding-left: 20px;
+	}
+
 	.galleries_image {
 		filter: blur(1px) grayscale(10%) brightness(90%);
 	}

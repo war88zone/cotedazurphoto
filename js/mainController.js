@@ -4,15 +4,34 @@ var target = false;
 var emptyCells = [];
 var titleIsVisible = true;
 
-// When HTML are loaded
-$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages).done(function() {
+// Background rotation
+function runCarroussel () {
+  if(!isMobile){
+    backgroundInterval = setInterval(function(){
+      let backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
+      while (backgroundIndex == lastBackgroundIndex) {
+        backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
+      }
+      // Number of background -> index
+      backgroundIndex--;
+      lastBackgroundIndex = backgroundIndex;
 
-  // Apply bindings
-  ko.applyBindings(globalViewModel);
+      $("body").css("background-image", "url(" + backgroundImages[backgroundIndex].src + ")");
+    }, 5000);
+  }
+}
 
+$.when(deferred_backgroundImages).done(function() {
   // Run background transitions
   var backgroundInterval = null;
   runCarroussel();
+});
+
+// When HTML are loaded
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe).done(function() {
+
+  // Apply bindings
+  ko.applyBindings(globalViewModel);
 
   // Load galleries
   loadGalleries();
@@ -89,22 +108,6 @@ $.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, 
     return false;
   });
 
-  // Background rotation
-  function runCarroussel () {
-    if(!isMobile){
-      backgroundInterval = setInterval(function(){
-        let backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
-        while (backgroundIndex == lastBackgroundIndex) {
-          backgroundIndex = Math.floor(Math.random() * (numberOfBackgrounds - 1 +1)) + 1;
-        }
-        // Number of background -> index
-        backgroundIndex--;
-        lastBackgroundIndex = backgroundIndex;
-
-        $("body").css("background-image", "url(" + backgroundImages[backgroundIndex].src + ")");
-      }, 5000);
-    }
-  }
 
   // Click on menu category
   $(".category").click(function(){

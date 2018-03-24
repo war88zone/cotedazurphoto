@@ -1,10 +1,11 @@
-// When document is loaded
-$(document).ready(function() {
-  var lastBackgroundIndex = 0;
-  var currentGalleryId = "";
-  var target = false;
-  var emptyCells = [];
-  var titleIsVisible = true;
+var lastBackgroundIndex = 0;
+var currentGalleryId = "";
+var target = false;
+var emptyCells = [];
+var titleIsVisible = true;
+
+// When HTML are loaded
+$.when(deferred_menu, deferred_socials, deferred_galleries, deferred_slideshow, deferred_contact, deferred_collaboration, deferred_aboutMe, deferred_backgroundImages).done(function() {
 
   // Apply bindings
   ko.applyBindings(globalViewModel);
